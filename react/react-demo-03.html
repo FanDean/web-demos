@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>React Demo 03</title>
+	<script src="../build/react.js"></script>
+	<script src="../build/react-dom.js"></script>
+	<script src="../build/browser.min.js"></script>
+</head>
+
+<body>
+	<h1>定义组件</h1>
+	<div id="example"></div>
+
+	<script type="text/babel">
+	// 定义组件
+
+		var HelloMessage = React.createClass({
+			render: function() {
+				return <h1>Hello {this.props.name}!</h1>;
+			}
+		}
+		);
+
+		ReactDOM.render(
+			<HelloMessage name="常健"/>,
+			document.getElementById('example')
+		);
+
+
+	</script>
+
+</body>
+</html>

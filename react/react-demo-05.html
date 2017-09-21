@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>React Demo 01</title>
+	<script src="../build/react.js"></script>
+	<script src="../build/react-dom.js"></script>
+	<script src="../build/browser.min.js"></script>
+</head>
+
+<body>
+	<h1>复合组件</h1>
+	<div id="example"></div>
+
+	<script type="text/babel">
+
+	var WebName = React.createClass({
+		render: function(){
+			return <h1> 我的网站 </h1>;
+		}
+	});
+
+	var WebLink = React.createClass({
+		render: function(){
+			return <a href="https://github.com/fandean">github.com/fandean</a>;
+		}
+	});
+
+	var WebShow = React.createClass({
+		render: function(){
+			return (
+				<div>
+				<WebName />
+				<WebLink />
+				</div>
+			);
+		}
+	});
+
+		ReactDOM.render(
+			<WebShow></WebShow>,
+			document.getElementById('example')
+		);
+
+	</script>
+
+</body>
+</html>

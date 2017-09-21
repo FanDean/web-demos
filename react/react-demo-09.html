@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>React Demo 09</title>
+	<script src="../build/react.js"></script>
+	<script src="../build/react-dom.js"></script>
+	<script src="../build/browser.min.js"></script>
+</head>
+
+<body>
+	<h1>PropTypes和设置默认属性</h1>
+	<div id="example"></div>
+
+	<script type="text/babel">
+
+	var ShowTitle = React.createClass({
+		// 设置默认值
+		getDefaultProps: function(){
+			return {
+				title:"基础教程"
+			};
+		},
+
+
+		propTypes: {
+			//title数据类型必须为字符串
+			title:React.PropTypes.string.isRequired
+		},
+
+		render: function(){
+			return <p>{this.props.title}</p>
+		}
+	});
+
+		// PropTypes
+		ReactDOM.render(
+			<ShowTitle></ShowTitle>,
+			document.getElementById('example')
+		);
+
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>React Demo 08</title>
+	<script src="../build/react.js"></script>
+	<script src="../build/react-dom.js"></script>
+	<script src="../build/browser.min.js"></script>
+</head>
+
+<body>
+	<h1>this.props.children</h1>
+	<div id="example"></div>
+
+	<script type="text/babel">
+
+	var ListComponent = React.createClass({
+		render: function(){
+			return (
+				<ul>
+					{
+						/*
+						通过this.props.children获取列表项内容后，使用React.Children.map()逐项进行设置
+						返回值为数组。
+						*/
+						React.Children.map(this.props.children, function(child){
+							//child 是遍历得到的父组件的子节点
+							return <li>{child}</li>
+						})
+					}
+				</ul>
+			)
+		}
+	});
+
+		ReactDOM.render(
+			<ListComponent>
+				<h1>HTML5与CSS3基础教程</h1>
+				<a href="https://www.google.com">Googel.com</a>
+			</ListComponent>,
+			document.getElementById('example')
+		);
+
+
+	</script>
+
+</body>
+</html>

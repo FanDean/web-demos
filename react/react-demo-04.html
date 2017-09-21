@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+
+    <style>
+      .pStyle {
+        font-size: 20px;
+      }
+    </style>
+
+  </head>
+  <body>
+    <h1>组件的样式</h1>
+    <div id="example"></div>
+    <script type="text/babel">
+
+    var hStyle = {
+      backgroundColor:"green",
+      color: "red"
+    }
+
+      var ShowMessage = React.createClass({
+        render: function() {
+          return (
+						// 内联样式：外面的{}表示JSX的语法，里面的{}表示JS对象
+						<div style={{backgroundColor:"yellow",borderWidth:5,borderColor:"black",borderStyle:"s"}}>
+
+						  <h1 style={hStyle}>{this.props.firstRow}</h1>
+
+                          <p className="pStyle">{this.props.secondRow}</p>
+						</div>
+					);
+        }
+      });
+
+      ReactDOM.render(
+        <ShowMessage firstRow="对象样式" secondRow="选择器样式"/>,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>

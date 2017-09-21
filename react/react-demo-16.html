@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>React Demo 16</title>
+	<script src="../build/react.js"></script>
+	<script src="../build/react-dom.js"></script>
+	<script src="../build/browser.min.js"></script>
+</head>
+
+<body>
+	<h1> 定时器 </h1>
+	<div id="container"></div>
+
+
+	<script type="text/babel">
+
+		var Hello = React.createClass({
+			getInitialState: function () {
+				return{
+				    opacity: 1.0
+				};
+            },
+
+			componentDidMount:function () {
+                //setInterval() 间隔指定的毫秒数不停地执行指定的代码
+				this.timer = setInterval(function () {
+					var opacity = this.state.opacity;
+					opacity -= .05;
+					if(opacity < 0.1){
+					    opacity = 1.0;
+					}
+					this.setState({
+						opacity:opacity
+					});
+                }.bind(this),100);
+            },
+
+			render:function () {
+				return(
+				    // 注意添加样式的形式
+				    <div style={{opacity: this.state.opacity}}>
+						Hello {this.props.name}
+					</div>
+				);
+            }
+		});
+
+
+
+        ReactDOM.render(
+			<Hello name="world"></Hello>,
+			document.getElementById('container')
+		);
+
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>React Demo 02</title>
+	<script src="../build/react.js"></script>
+	<script src="../build/react-dom.js"></script>
+	<script src="../build/browser.min.js"></script>
+</head>
+
+<body>
+	<h1>JSX 的基本语法规则</h1>
+	<div id="h1"></div>
+	<div id="example"></div>
+	<br/>
+	<div id="example2"></div>
+
+
+	<script type="text/babel">
+	// JSX 的基本语法规则
+	var name = ['健','范'];
+
+		ReactDOM.render(
+			<div>
+			{
+				name.map(function(name){
+					return <div>Hello, {name}!</div>
+				})
+			}
+			</div>,
+			document.getElementById('example')
+		);
+
+
+		ReactDOM.render(
+			<h1>示例:JSX语法</h1>,
+			document.getElementById('h1')
+		);
+
+// JSX 允许直接在模板插入 JavaScript 变量。如果这个变量是一个数组，则会展开这个数组的所有成员
+		var arr = [
+			<h1>Hello World!</h1>,
+			<h2>React is awesome</h2>
+		];
+
+		ReactDOM.render(
+			<div>{arr}</div>,
+			document.getElementById('example2')
+		);
+	</script>
+</body>
+
+</html>

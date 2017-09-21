@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>React Demo 13</title>
+	<script src="../build/react.js"></script>
+	<script src="../build/react-dom.js"></script>
+	<script src="../build/browser.min.js"></script>
+</head>
+
+<body>
+	<h1> 组件生命周期 </h1>
+	<div id="container"></div>
+
+	<script type="text/babel">
+
+		var Demo = React.createClass({
+			/*
+			 1. 创建阶段：
+			 只调用getDefaultProps
+			*/
+			getDefaultProps: function(){
+				//在创建类的时候被调用，设置this.props的默认值
+				console.log("getDefaultProps");
+				return {};
+			},
+
+			/*
+			2. 实例化阶段：
+				getInitialState
+				componentWillMount
+				render
+				componentDidMount
+			*/
+			getInitialState: function(){
+				//设置 this.state 的默认值
+				console.log("getInitialState");
+				return null;
+			},
+
+			componentWillMount: function(){
+				//在render之前调用
+				console.log("componentWillMount");
+			},
+
+			render: function(){
+				//渲染并返回一个虚拟DOM
+				console.log("render");
+				return <div>Hello React</div>
+			},
+
+
+			componentDidMount: function(){
+				//在render之后调用
+				//在该方法中，React会使用render方法返回的虚拟DOM对象创建真实的DOM结构
+				//可以在这个方法中读取DOM节点
+				console.log("componentDidMount");
+			},
+
+			/*
+			3. 更新阶段
+					componentWillReceiveProps
+					shouldComponentUpdate 如果返回值为 false 则后面的方法不会执行
+					componentWillUpdate
+					render
+					componentDidUpdate
+			*/
+			componentWillReceiveProps:function(){
+				console.log("componentWillReceiveProps");
+			},
+
+			shouldComponentUpdate: function(){
+				//是否需要更新
+				console.log("shouldComponentUpdate");
+				return true;
+			},
+
+			componentWillUpdate: function(){
+				console.log("componentWillUpdate");
+			},
+
+			componentDidUpdate:function(){
+				console.log("componentDidUpdate");
+			},
+
+			/*
+			4. 销毁阶段
+					componentWillUnmount
+			*/
+			componentWillUnmount: function(){
+				console.log("componentWillUnmount");
+			}
+
+		});
+
+		/*
+				演练时依次注释下面的内容，然后查看log
+		*/
+
+		//1.第一次创建并加载组件
+		ReactDOM.render(
+			<Demo></Demo>,
+			document.getElementById('container')
+		);
+
+		//2.重新渲染组件
+		ReactDOM.render(
+			<Demo></Demo>,
+			document.getElementById('container')
+		);
+
+		//3.移除组件
+		ReactDOM.unmountComponentAtNode(document.getElementById("container"));
+	</script>
+
+</body>
+</html>

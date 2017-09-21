@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="vue.js"></script>
+
+</head>
+<body>
+	<h1 id="demo"> {{name}} 欢迎 </h1>
+
+	<script>
+		// 创建一个 vue对象，接收的参数为一个对象，这里我们以一对花括号表示一个对象
+		var app = new Vue({
+			el:'#demo',    //el用于声明vue.js的管理边界。只匹配满足条件的第一个，所以建议传入一个id
+			data:{
+				name:'Fan'
+			} 			 // 核心作用是存放显示在页面中的数据，需要是一个对象
+		})
+	</script>
+</body>
+</html>

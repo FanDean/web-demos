@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>React Demo 11</title>
+	<script src="../build/react.js"></script>
+	<script src="../build/react-dom.js"></script>
+	<script src="../build/browser.min.js"></script>
+</head>
+
+<body>
+	<h1> React state </h1>
+	<div id="container"></div>
+
+	<script type="text/babel">
+
+		var CheckButton = React.createClass({
+			// 定义初始状态
+			getInitialState: function(){
+				return {
+					// 在这个对象中设置的属性，将会存储在state中
+					// 默认状态，未选中
+					isCheck: false
+				}
+			},
+
+			//定义事件绑定的方法
+			handerChange:function(){
+				//每当我们点击复选框的时候，修改状态值。
+				//通过this.state读取设置的状态值
+				this.setState({
+					isCheck: !this.state.isCheck
+				});
+			},
+
+			render: function(){
+				//根据状态值，设置显示的文字
+				//在 jsx语法中，不能直接使用if语句，但可以使用三目运算符
+				var text = this.state.isCheck ? "已选中" : "未选中";
+				return (
+					<div>
+						<input type="checkbox" onChange={this.handerChange}/>
+						{text}
+					</div>
+				)
+			}
+		});
+
+//  当state发生变换时，会调用组件内部的render方法
+		ReactDOM.render(
+			<CheckButton></CheckButton>,
+			document.getElementById('container')
+		);
+	</script>
+
+</body>
+</html>
