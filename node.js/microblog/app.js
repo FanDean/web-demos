@@ -10,6 +10,15 @@ var users = require('./routes/users');
 
 //手动添加
 var helloworld = require('./routes/helloworld');
+var post = require('./routes/post');
+var reg = require('./routes/reg');
+var doReg = require('./routes/doReg');
+var login = require('./routes/login');
+var doLogin = require('./routes/doLogin');
+var logout = require('./routes/logout');
+
+
+
 
 
 var app = express();
@@ -31,6 +40,10 @@ app.use('/users', users);
 
 //手动添加
 app.use('/helloworld',helloworld);
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
