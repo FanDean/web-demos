@@ -32,7 +32,7 @@
 		<br>
 		<h3>{{fullName}}</h3>
 
-		
+
 	</div>
 </template>
 
@@ -66,7 +66,7 @@
 				console.log("You pressed enter key!");
 			}
 		},
-		computed:{
+		computed:{ // 计算属性
 			fullName:function(){
 				return this.user.firstName + this.user.lastName;
 			}
@@ -77,5 +77,5 @@
 
 //  scoped 用于限定该 style 只能用于当前文件
 <style scoped>
-	
+
 </style>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Vue.js前端开发-快速入门与专业应用 第2章</title>
+	<script src="../../build/vue.js"></script>
+</head>
+
+<body>
+	<!-- 简单测试 -->
+	<div id="demo">
+		<h1>Hello {{name}}</h1>
+
+		<h1>Vue.js前端开发 第2章 demo</h1>
+		<h2>v-bind指令</h2>
+		<p v-bind:id="'id-' + id ">v-bind指令用于HTML属性。<img v-bind:src="avatar" width='20' alt=""> </p>
+
+		<h2>过滤器</h2>
+		<p>{{name | uppercase }}。但是 Vue 2.0 废弃了内置过滤器。</p>
+
+		<h2>计算属性</h2>
+		<p><strong>firstName: </strong> {{firstName}} <strong>lastName: </strong>{{lastName}}</p>
+		<p><strong>fullName(计算得到的值): </strong>{{fullName}}</p>
+		<p>计算属性2：使用setter</p>
+		<p>将vm.cents设置为后端所存的数据，计算属性price为前端所展示和更新的数据。下面是price的值：</p>
+		<p>&yen;{{price}}</p>
+
+		<h2>v-model</h2>
+		<p>Vue.js 中提供 v-model 的指令对<strong>表单元素</strong>进行双向数据绑定,在修改表单元素值的同时,实例 vm 中对应的属性值也同时更新,反之亦然。</p>
+
+		<h3>Text输入框</h3>
+		<input type="text" v-model="message" /> <span>Your input is: {{message}}</span>
+
+		<h3>Radio 单选框</h3>
+		<label><input type="radio" value="male" v-model="gender">男</label>
+		<label><input type="radio" value="female" v-model="gender">女</label>
+		<p>gender值即为选中的radio元素的value值： <strong>{{gender}}</strong> </p>
+
+		<h3>Checkbox分为 单个勾选框和多个勾选框</h3>
+		<label>单个勾选框，v-model值为布尔值： <input type="checkbox" v-model="checked"></label>
+		<span>checked: {{ checked }}</span>
+		<p>多个勾选框，v-model 使用相同的属性名称，且属性为数组</p>
+		<label><input type="checkbox" value="1" v-model="multiChecked">1</label>
+		<label><input type="checkbox" value="2" v-model="multiChecked">2</label>
+		<label><input type="checkbox" value="3" v-model="multiChecked">3</label>
+		<p>MultiChecked: {{ multiChecked.join('|') }}</p>
+
+		<h3>Select也分为单选和多选</h3>
+		<select v-model="selected">
+			<option selected>A</option>
+			<option>B</option>
+			<option>C</option>
+		</select>
+		<span>Selected: {{ selected }}</span><br>
+		<p><span>多选（同时按住Ctrl）</span> <br>
+			<select v-model="multiSelected" multiple>
+			<option selected>A</option>
+			<option>B</option>
+			<option>C</option>
+		</select>
+			<span>MultiSelected: {{ multiSelected.join('|') }}</span>
+		</p>
+
+		<h2>模板渲染</h2>
+		<p>把获取到的数据按照一定的规则加载到写好的模板中,输出成在浏览器中显示的 HTML,这个过程就称之为渲染。而 Vue.js 是在前端(即浏览器内)进行的模板 渲染。
+		</p>
+		<h3>条件渲染：v-if/v-else,v-show</h3>
+		<p><strong>v-if/v-else: </strong> 注意：v-else必须紧跟v-if</p>
+		<div v-if="yes">
+			<div v-if="inner">inner</div>
+			<div v-else>not inner</div>
+		</div>
+		<div v-else>no</div>
+		<p><strong>v-show: </strong>不同的是，v-show只是切换原始的CSS属性display</p>
+		<div v-show="show">show</div>
+		<h3>列表渲染: v-for</h3>
+		<ul>
+			<li v-for="item in items">
+				<h4>{{item.name}}</h4>
+				<p>{{item.version}}</p>
+			</li>
+		</ul>
+
+		<h3>template标签用法</h3>
+		<p>是否有方式可以将指令作用到多个兄弟 DOM 元素上? Vue.js 提供了 template 标签</p>
+		<template v-if="yes">
+			<p>There is first dom</p>
+			<p>There is second dom</p>
+			<p>There is third dom</p>
+		</template>
+
+		<template v-for="item in items">
+			<p>{{item.name}}</p>
+			<p>{{item.version}}</p>
+		</template>
+
+		<h2>事件绑定和监听</h2>
+		<button v-on:click="say">Say Hello</button>
+		<button v-on:click="showEvent">showEvent</button>
+
+		<h2>简写</h2>
+		<p><strong>v-bind简写:</strong></p>
+		<pre>&lt;a v-bind:href="url"/&gt; 可简写为 &lt;a :href="url"/&gt;</pre>
+		<p><strong>v-on简写:</strong></p>
+		<pre>&lt;a v-on:click="doSomething"/&gt; 可简写为 &lt;a @click="doSomething"/&gt;</pre>
+
+
+		<p>Vue.js 提供了 $set 方法,在修改数据的同时进行视图更新。</p>
+		<hr>
+	</div>
+
+
+	<!-- 模板 template -->
+	<div id="tpl-test">
+		<p>将会被template替换</p>
+	</div>
+
+	<script id="tpl" type="x-template">
+		<div class=tpl>
+			<p>This is a template from script tag</p>
+		</div>
+	</script>
+
+
+	<!-- component -->
+	<my-component title="myTitle" content="myContent"></my-component>
+
+
+	<script>
+		// 创建一个 vue对象，接收的参数为一个对象，这里我们以一对花括号表示一个对象
+		var vm = new Vue({
+			el: '#demo', //el用于声明vue.js的管理边界。只匹配满足条件的第一个，所以建议传入一个id
+			data: {
+				id: 1,
+				index: 0,
+				name: 'Vue',
+				avatar: 'https://cn.vuejs.org/images/logo.png',
+				count: [1, 2, 3, 4, 5],
+				names: ['Vue1.0', 'Vue2.0'],
+				items: [{
+						name: 'Vue1.0',
+						version: '1.0'
+					},
+					{
+						name: 'Vue2.0',
+						version: '2.0'
+					},
+				],
+				firstName: 'Fan',
+				lastName: 'Dean',
+				cents: 100,
+				//以下数据用于表单控件
+				message: '',
+				gender: '',
+				checked: '',
+				multiChecked: [],
+				selected: '',
+				multiSelected: [],
+				//以下数据用于“模板渲染”部分
+				yes: true,
+				inner: false,
+				show: true,
+				//以下数据用于事件绑定
+				msg: 'Hello Vue.js',
+				//以下数据用于 简写
+				uncompiled: ''
+			},
+			computed: { //计算属性
+				fullName: function() {
+					//this指向 vm 实例
+					return this.firstName + ' ' + this.lastName
+				},
+				price: { //使用setter和getter
+					set: function(newValue) {
+						this.cents = newValue * 100;
+					},
+					get: function() {
+						return (this.cents / 100).toFixed(2);
+					}
+				}
+			},
+			methods: {
+				say: function() {
+					alert(this.msg);
+				},
+				showEvent: function(event) {
+					console.log(event);
+				}
+			}
+		});
+
+		var app = new Vue({
+			el: '#tpl-test',
+			template: '#tpl', //这里是id
+		});
+
+		var myComponent = Vue.component('my-component', {
+			props: ['title', 'content'],
+			template: '<h1>{{title}}</h1><p>{{content}}</p>'
+		})
+	</script>
+</body>
+
+</html>

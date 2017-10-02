@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Vue.js前端开发-快速入门与专业应用 第3章</title>
+	<script src="../../build/vue.js"></script>
+</head>
+
+<body>
+	<h1>Vue.js前端开发 第3章：自定义指令基础</h1>
+	<ul>
+		<li>通过Vue.directive(id,definition)注册一个<strong>全局自定义指令</strong></li>
+		<li>通过在组件的directives选项注册一个<strong>局部的自定义指令</strong></li>
+	</ul>
+
+	<div id="app1">
+		<p>全局自定义指令</p>
+		<!-- 点击按钮切换 f 的值 -->
+		<button @click="f = !f">toggle全局</button>
+		<!-- 自定义的指令 -->
+		<input v-hidden="f">
+
+		<p>局部自定义指令</p>
+		<comp></comp>
+	</div>
+	<script>
+		//全局自定义指令，在使用时需要添加 v- 前缀
+		Vue.directive('hidden', {
+			// 钩子函数 update：指令所属元素绑定值变化时更新
+			update: function(el, binding) {
+				// el: 该指令绑定到的元素
+				// binding: 包含实例中的属性
+				el.style.display = binding.value ? 'none' : 'inline'
+			}
+		})
+
+		// 局部自定义指令。先自定义一个组件(这里全局注册了一个组件)
+		Vue.component('comp',{
+			template: '<div><button @click="hate=!hate">toggle局部</button><div v-hidd="hate">{{msg}}</div></div>',
+			directives:{
+				hidd:{
+					update:function(el,binding){
+						console.log(binding.value);
+						el.style.display = binding.value?'none':'block'
+					}
+				}
+			},
+			data(){
+				return {hate:false, msg:1}
+			}
+		})
+
+
+		new Vue({
+			el: '#app1',
+			data() {
+				return {
+					f: false
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>
