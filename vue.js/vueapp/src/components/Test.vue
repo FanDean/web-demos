@@ -32,6 +32,9 @@
 		<br>
 		<h3>{{fullName}}</h3>
 
+		<!-- props 属性 -->
+		<h2>props 属性</h2>
+		<p>{{msg}}</p>
 
 	</div>
 </template>
@@ -39,7 +42,12 @@
 <script>
 	export default{
 		name: "test",
-		//name之后的属性可以一次次添加,而不必同时添加
+		props:{ // 属性
+			msg: {
+				type: String, //类型
+				default: "默认就是当前的文字"
+			}
+		},
 		data(){ //所有的数据在这里实现
 			return {
 				title:"Hello Vue.js!",

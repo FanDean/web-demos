@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- vue 2.0 -->
+	<script src="../../build/vue.js"></script>
+	<script src="https://cdn.bootcss.com/vue-router/2.7.0/vue-router.min.js"></script>
+	<title>Vue.js前端开发-快速入门与专业应用 第7章</title>
+</head>
+
+<body>
+	<h1>第7章：Vue.js常用插件</h1>
+
+  <h2>vue-router</h2>
+	<div id="app">
+		<nav class="navbar navbar-inverse">
+			<div class="container">
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<!-- 使用 v-link 指令,path 的值对应跳转的路径,即 #!/home -->
+						<!-- vue 1.0 -->
+						<!-- <li><a v-link="{path: '/home'}">Home</a></li> -->
+						<!-- <li><a v-link="{path: '/list'}">List</a></li> -->
+						<!-- vue 2.0 -->
+						<router-link to="/home">Home</router-link>
+						<router-link to="/list">List</router-link>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="container">
+			<!-- 路由切换组件 template 插入的位置 -->
+			<router-view></router-view>
+		</div>
+	</div>
+
+	<!-- JS代码 -->
+	<script>
+		//创建子组件，相当于路径对应的页面
+		var Home = Vue.extend({
+			template: '<h2>This is the home page</h2>'
+		});
+
+		var List = Vue.extend({
+			template: '<h2>This is the link page</h2>'
+		});
+
+
+
+		// // vue 1.0
+		// var router = new VueRouter();
+    //
+		// // 创建根组件
+		// var App = Vue.extend({})
+		// // 通过路由器实例定义路由规则
+		// router.map({
+		//   '/home':{
+		//     component: Home
+		//   },
+		//   '/list':{
+		//     component: List
+		//   }
+		// })
+		//
+		// router.start(App, '#app')
+
+    // vue 2.0
+    //创建路由器实例
+    const router = new VueRouter({
+      routes: [{
+          path: '/home',
+          component: Home
+        },
+        {
+          path: '/list',
+          component: List
+        }
+      ]
+    })
+
+    const app = new Vue({
+      router: router
+    }).$mount('#app')
+	</script>
+</body>
+
+</html>
