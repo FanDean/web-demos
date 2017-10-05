@@ -1,10 +1,11 @@
 <template>
-  <div id="show-blogs" v-theme:column="'wide'">
+  <div id="show-blogs" v-theme:column="'null'">
     <h1>博客总览</h1>
-    <div v-for="blog in blogs" class="single-blog">
-      <h2 v-rainbow>{{blog.title}}</h2>
+    <input type="text" v-model="search" placeholder="关键字">
+    <div v-for="blog in filteredBlogs" class="single-blog">
+      <h2 v-rainbow>{{blog.title | to-uppercase}}</h2>
       <article>
-        {{blog.body}}
+        {{blog.body | snippet}}
       </article>
     </div>
   </div>
@@ -15,7 +16,8 @@
     name: 'show-blogs',
     data() {
       return {
-        blogs: []
+        blogs: [],
+        search: ""
       }
     },
     created() { //在此请求数据
@@ -26,6 +28,13 @@
           this.blogs = data.body.slice(0, 10);
 //          console.log(this.blogs);
         })
+    },
+    computed:{ //使用计算属性实现过滤功能(而非过滤器)
+      filteredBlogs:function () {
+        return this.blogs.filter((blog) =>{
+          return blog.title.match(this.search);
+        })
+      }
     }
   }
 </script>
@@ -35,14 +44,21 @@
   #show-blogs {
     max-width: 800px;
     margin: 0 auto;
+    /*padding:20px;*/
   }
 
   .single-blog {
     padding: 20px;
-    margin:20px 0;
+    margin: 20px 0;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     background: #eee;
+  }
+
+  input{
+    padding:5px;
+    /*width: 100%;*/
+    /*margin: 0 auto;*/
   }
 </style>
