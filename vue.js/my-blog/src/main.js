@@ -47,7 +47,7 @@ Vue.filter("snippet", function (value) {
 })
 
 
-//创建路由
+//3. 创建路由，通知routes映射关系
 const router = new VueRouter({
   routes: Routes,
   mode: "history"
@@ -59,5 +59,5 @@ new Vue({
   el: '#app',
   template: '<App/>',
   components: {App},
-  router:router   //使用路由
+  router:router   //4.把router注册到app内，让app可以识别路由
 })

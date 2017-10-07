@@ -2,6 +2,7 @@
   <nav>
     <ul>
       <li>
+
         <!-- exact的作用是使其可以切换选中状态 -->
         <router-link to="/" exact>博客</router-link>
         <router-link to="/add" exact>写博客</router-link>
@@ -29,7 +30,7 @@
     margin: 0 20px;
   }
 
-  /* 最终的页面会产生 a 标签 */
+  /* 最终 router-link 会产生 a 标签 */
   a {
     color: #fff;
     text-decoration: none;

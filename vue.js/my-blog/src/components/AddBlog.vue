@@ -93,7 +93,7 @@ export default {
 
   #add-blog{
     margin: 20px auto;
-    max-width: 600px;
+    max-width: 800px;
     padding:20px;
   }
 
@@ -111,6 +111,10 @@ export default {
   #checkboxes label{
     display: inline-block;
     margin-left:10px;
+  }
+
+  select{
+    font-size: 1em;
   }
 
   button{
