@@ -188,4 +188,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 ## 用户注册
 
+安装 mongodb 数据库。启动数据库服务：
+```shell
+mongod --dbpath /home/fan/workspace/web-demos/node.js/blog/db
+```
 
+连接到blog数据库：
+```javascript
+//连接到blog数据库
+mongoose.connect('mongodb://127.0.0.1:27017/blog',function (err) {});
+```
+该方法已经过时。提示：
+(node:9559) DeprecationWarning: `open()` is deprecated in mongoose >= 4.11.0, use `openUri()` instead, or set the `useMongoClient` option if using `connect()` or `createConnection()`. See http://mongoosejs.com/docs/connections.html#use-mongo-client
+
+
+
+[Mongoose ODM v4.12.1](http://mongoosejs.com/)    
+[Mongoose学习参考文档——基础篇 - CNode技术社区](http://cnodejs.org/topic/504b4924e2b84515770103dd)    
