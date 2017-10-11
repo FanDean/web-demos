@@ -19,8 +19,6 @@ var logout = require('./routes/logout');
 
 
 
-
-
 var app = express();
 
 // view engine setup
