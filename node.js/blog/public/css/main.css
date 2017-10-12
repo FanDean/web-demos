@@ -1,0 +1,202 @@
+body{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #efeaea;
+}
+
+
+header{
+    max-width:100%;
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+}
+
+/*该图片过大，发生了溢出*/
+/*.backimg{*/
+    /*max-width: 100%;*/
+    /*height: auto;*/
+    /*overflow: hidden;*/
+/*}*/
+
+
+.logo{
+    text-align: center;
+    margin: 0;
+    padding: 50px;
+    background-image: url(../images/01.png);
+}
+
+.logo span{
+    display: block;
+    margin-top: 5px;
+    font-family: "Gill Sans", Calibri;
+    /*font-style: normal;*/
+    font-weight:bold;
+    font-size: 24px;
+    color: orangered;
+}
+
+nav{
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 0 2em 0;
+    padding: 10px;
+}
+
+main {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.mainLeft{
+    float: left;
+    width: 62.5%;
+}
+
+
+.mainRight{
+    float: right;
+    width:31.25%;
+}
+
+
+footer{
+    clear: both;
+    padding: 10px;
+}
+
+.menu,
+.listBox h1,
+.colDefault,
+footer{
+    text-align: center;
+}
+
+
+
+nav,
+.listBox,
+.pager,
+.rightBox{
+    background: #ffffff;
+}
+
+
+.listBox{
+    padding: 20px 20px 30px 20px;
+    margin: 0 0 2em 0;
+}
+
+
+.listBox h1{
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.colInfo{
+    color: deepskyblue;
+}
+
+
+section h2{
+    font-size: 18px;
+}
+
+
+.pager{
+    padding: 20px 15px;
+}
+
+.pager ul{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.pager li{
+    display: inline;
+}
+
+.previous{
+    float: left;
+}
+
+.next{
+    float: right;
+}
+
+
+/* 侧边 */
+
+.rightBox{
+    margin: 0 0 30px 0;
+    padding: 20px;
+}
+
+
+
+.rightBox .title{
+    font-size: 18px;
+    text-align: left;
+    border-bottom: 2px solid orangered;
+}
+
+.rightBox{
+    text-align: right;
+}
+
+.line{
+    margin: 10px 5px;
+}
+
+.line input{
+    width: 70%;
+    font-size: 16px;
+    padding:  2px 0;
+}
+
+.rightBox button{
+    background: orangered;
+    padding: 5px;
+    margin: 0;
+    color: white;
+    border: none;
+    /*border-radius: 4px;*/
+    width: 70%;
+}
+
+
+#admin{
+    text-align: left;
+}
+
+div.shequ{
+    text-align: left;
+}
+
+/* a标签 */
+a{
+    text-decoration: none;
+}
+
+.mainLeft a{
+
+}
+
+.menu a{
+    margin: 8px;
+    font-size: 20px;
+}
+
+
+/* 阅读全文 */
+.function a{
+    background: orangered;
+    padding: 8px;
+    color: white;
+    border-radius: 4px;
+}

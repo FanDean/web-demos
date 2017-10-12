@@ -9,7 +9,7 @@ var app = express();
 //加载模板
 var swig = require('swig');
 //加载 path
-// var path = require('path');
+var path = require('path');
 //加载数据库模块
 var mongoose = require('mongoose');
 
@@ -32,7 +32,7 @@ swig.setDefaults({cache:false});
 //当用户访问的url以/public开始，那么直接返回对应 __dirname + '/public' 下的文件
 // app.use('public',express.static(__dirname + '/public'));
 //新方法
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 /*
  * req request对象

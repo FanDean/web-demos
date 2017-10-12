@@ -169,7 +169,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 /comment/delete | 评论删除 
 
 
-## 功能开发顺序
+### 功能开发顺序
 
 功能模块开发顺序：
 * 用户
@@ -205,3 +205,19 @@ mongoose.connect('mongodb://127.0.0.1:27017/blog',function (err) {});
 
 [Mongoose ODM v4.12.1](http://mongoosejs.com/)    
 [Mongoose学习参考文档——基础篇 - CNode技术社区](http://cnodejs.org/topic/504b4924e2b84515770103dd)    
+
+
+## 前端页面逻辑
+
+
+Font Awesome:
+
+网站：[Font Awesome，一套绝佳的图标字体库和CSS框架](http://fontawesome.dashgame.com/ "Font Awesome，一套绝佳的图标字体库和CSS框架")
+
+官方示例：[Font Awesome，示例](http://fontawesome.dashgame.com/#basic "Font Awesome，一套绝佳的图标字体库和CSS框架")
+
+
+
+[字体图标font-awesome - AminHuang - 博客园](http://www.cnblogs.com/AminHuang/p/4311916.html "字体图标font-awesome - AminHuang - 博客园")
+
+
