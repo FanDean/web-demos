@@ -221,3 +221,18 @@ Font Awesome:
 [字体图标font-awesome - AminHuang - 博客园](http://www.cnblogs.com/AminHuang/p/4311916.html "字体图标font-awesome - AminHuang - 博客园")
 
 
+
+## 用户注册逻辑
+
+前端： 使用ajax提交数据。
+
+如果没有 jQuery，AJAX 编程还是有些难度的。
+[jQuery AJAX 简介 | 菜鸟教程](http://www.runoob.com/jquery/jquery-ajax-intro.html "jQuery AJAX 简介 | 菜鸟教程")
+
+[AJAX 教程 | 菜鸟教程](http://www.runoob.com/ajax/ajax-tutorial.html "AJAX 教程 | 菜鸟教程")
+
+
+后端：使用 body-parser 模块处理 Post 请求。
+
+[body-parser-json](https://www.npmjs.com/package/body-parser-json "body-parser-json")
+

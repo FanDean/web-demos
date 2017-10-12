@@ -19,7 +19,7 @@ $(function () {
         //通过ajax提交请求
         $.ajax({
             type:'post',
-            usr: '/api/user/register',
+            url: '/api/user/register',
             data:{
                 username: $registerBox.find('[name="username"]').val(),
                 password: $registerBox.find('[name="password"]').val(),

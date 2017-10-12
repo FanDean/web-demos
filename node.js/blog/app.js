@@ -4,16 +4,18 @@
 
 //加载express模块
 var express = require('express');
-//创建 app 应用  => Node.js createrServer();
-var app = express();
+
 //加载模板
 var swig = require('swig');
 //加载 path
 var path = require('path');
 //加载数据库模块
 var mongoose = require('mongoose');
+//加载 body-parser,用来处理post提交过来的数据
+var bodyParser = require('body-parser');
 
-
+//创建 app 应用  => Node.js createrServer();
+var app = express();
 
 //配置应用模板
 //定义当前应用所使用的模板引擎
@@ -33,6 +35,13 @@ swig.setDefaults({cache:false});
 // app.use('public',express.static(__dirname + '/public'));
 //新方法
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+//bodyparser设置
+//使用该方法返回的中间件。 Returns middleware that only parses urlencoded bodies.
+//参数 extended的作用
+app.use(bodyParser.urlencoded({extended:true}));
+
 
 /*
  * req request对象
@@ -68,6 +77,7 @@ app.get('/main.css',function (req,res,next) {
 app.use('/admin',require('./routers/admin'));
 app.use('/api',require('./routers/api'));
 app.use('/',require('./routers/main'));
+
 
 
 
