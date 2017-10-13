@@ -13,6 +13,9 @@ var path = require('path');
 var mongoose = require('mongoose');
 //加载 body-parser,用来处理post提交过来的数据
 var bodyParser = require('body-parser');
+//加载cookies模块
+var cookies = require('cookies');
+
 
 //创建 app 应用  => Node.js createrServer();
 var app = express();
@@ -42,6 +45,32 @@ app.use(express.static(path.join(__dirname, 'public')));
 //参数 extended的作用
 app.use(bodyParser.urlencoded({extended:true}));
 
+
+//设置cookie
+app.use(function (req, res, next) {
+    //通过cookies的方法将cookie加载进req对象中
+    req.cookies = new cookies(req,res);
+
+    //处理请求中的cookies。（在服务器向客户端发送过cookies后）
+
+    //利用这种方法判断userInfo的类型，再考虑如何解析
+    // console.log(typeof req.cookies.get('userInfo'));
+
+    //在很多地方需要用户信息，所以我们最好将用户信息保存在一个全局对象中
+    //这里我们可以选择在 req 中增加一个属性，用来保存这些信息
+    req.userInfo = {};
+
+    //解析登录用户的cookies信息
+    if (req.cookies.get('userInfo')){
+        try {
+            req.userInfo = JSON.parse(req.cookies.get('userInfo'));
+        }catch (e){
+
+        }
+    }
+
+    next();
+});
 
 /*
  * req request对象

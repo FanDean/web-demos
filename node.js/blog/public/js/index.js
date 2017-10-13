@@ -41,7 +41,7 @@ $(function () {
                 }
             }
         });
-    })
+    });
 
 
     //登录
@@ -62,15 +62,34 @@ $(function () {
                 //如果注册成功，显示登录页面
                 if (!result.code){ //code为0表示成功
                     //使用定时器，使得不要过渡的太快
-                    setTimeout(function () {
-                        $loginBox.hide();
-                        $userInfo.show();
-                        $userInfo.find('.username').html(result.userInfo.username);
-                        $userInfo.find('.adminInfo').hide();
-                        $userInfo.find('.info').html("你好，欢迎登录我的博客");
-                    }, 1000);
+                    // setTimeout(function () {
+                    //     $loginBox.hide();
+                    //     $userInfo.show();
+                    //     $userInfo.find('.username').html(result.userInfo.username);
+                    //     $userInfo.find('.adminInfo').hide();
+                    //     $userInfo.find('.info').html("你好，欢迎登录我的博客");
+                    // }, 1000);
+
+                    //使用了 cookie 之后就需要控制显示或隐藏某界面
+                    //登录成功直接刷新页面即可获得想要的界面
+                    window.location.reload();
                 }
             }
         });
     })
+
+    //退出登录
+    $('#logoutBtn').on('click',function () {
+        $.ajax({
+            //默认为get方法
+            url:'/api/user/logout',
+            success: function (result) {
+                if (!result.code){
+                    //退出成功，刷新页面
+                    window.location.reload();
+                }
+            }
+        })
+    })
+    
 });

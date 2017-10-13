@@ -269,6 +269,68 @@ mongoose 的说明手册中；`Model#sava()`表示对象方法（先要new出一
 
 ## 用户登录
 
+略
 
 
+## 使用cookie保存用户登录状态
+
+需要借助 cookies 模块。
+
+
+在app.js中使用cookies中间件，**这样无论请求的是哪个地址都会经过该中间件**。
+
+```javascript
+//设置cookie
+app.use(function (req, res, next) {
+    //通过cookies的方法将cookie加载进req对象中
+    req.cookies = new cookies(req,res);
+
+    next();
+});
+```
+
+> 这也是大多数中间件在app.js中引入的原因。
+
+
+只有登录成功才向客户端发送cookie。（api.js中）
+```javascript
+        //为请求设置cookie，这将会在res中将此cookie发送给客户端
+        //之后刷新浏览器，就会发现发送的req中也会包含该cookie
+        req.cookies.set('userInfo', JSON.stringify({ //将其转换为字符串，保存到名称为userInfo的对象中
+            _id:userInfo.id,
+            username: userInfo.username
+        }));
+```
+
+//在很多地方需要用户信息，所以我们最好将用户信息保存在一个全局对象中   
+//这里我们可以选择在 req 中增加一个属性，用来保存这些从req.cookies中解析出来的信息    
+`req.userInfo = {};`
+
+
+**如何解决当每次刷新主页时显示的是登录好的页面，而非当前的注册页面?**  
+
+这里我们使用 swig 模板来实现。（在main.js中）
+
+根据客户端给模板分配的数据来判断是显示用户面板、登录还是注册页面。
+
+
+> Chrome调试技巧：   
+> 切换到 Network 标签页来查看网络状态。  
+> 在Name处点中某一次请求，就可以查看该此请求发送的数据；比如我们可以查看 Headers或Cookies等。  
+> 可以直接在调试面板手动删除 cookie，再刷新来观察预期效果。删除的方法是：  
+> 切换到 Application 标签页，展开Cookies，右键Clear某cookies即可。  
+
+
+**退出登录：**  
+
+流程： 
+1. 当客户端点击退出，则通过ajax请求退出路径；
+2. 服务器端接受到该路径的请求后清空cookie，并向客户端返回一个消息
+3. 客户端在ajax中确认接收到消息后，重载浏览器页面。
+
+
+
+## 视频地址
+
+[Node.js 实战开发：博客系统_腾讯课堂](https://ke.qq.com/course/185893 "Node.js 实战开发：博客系统_腾讯课堂")
 

@@ -132,10 +132,28 @@ router.post('/user/login', function (req, res) {
             _id:userInfo.id,
             username: userInfo.username
         };
+
+        //为请求设置cookie，这将会在res中将此cookie发送给客户端
+        //之后刷新浏览器，就会发现发送的req中也会包含该cookie
+        req.cookies.set('userInfo', JSON.stringify({ //将其转换为字符串，保存到名称为userInfo的对象中
+            _id:userInfo.id,
+            username: userInfo.username
+        }));
         res.json(responseData);
         return;
 
     })
+});
+
+
+/*
+ * 退出登录
+ */
+router.get('/user/logout',function (req, res) {
+    //将cookies设置为空
+    req.cookies.set('userInfo', null);
+    //推送已退出的信息
+    res.json(responseData);
 });
 
 
