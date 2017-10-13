@@ -178,6 +178,16 @@ div.shequ{
     text-align: left;
 }
 
+/* colwarning 和 textCenter 同时应用于同一个元素，在这里设置字体颜色却没有用？ */
+.colwarning{
+    color: red;
+}
+
+.textCenter{
+    text-align: center;
+    color: red;
+}
+
 /* a标签 */
 a{
     text-decoration: none;

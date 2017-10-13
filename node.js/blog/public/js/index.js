@@ -27,7 +27,17 @@ $(function () {
             },
             dataType:'json', //返回的数据类型
             success: function (result) { //输出返回的类型
-                console.log(result);
+                // console.log(result);
+                $registerBox.find('.colWarning').html(result.message);
+
+                //如果注册成功，显示登录页面
+                if (!result.code){
+                    //使用定时器，使得不要过渡的太快
+                    setTimeout(function () {
+                        $loginBox.show();
+                        $registerBox.hide();
+                    }, 1000);
+                }
             }
         });
     })

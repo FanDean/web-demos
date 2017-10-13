@@ -236,3 +236,37 @@ Font Awesome:
 
 [body-parser-json](https://www.npmjs.com/package/body-parser-json "body-parser-json")
 
+[express插件之body-parser - CSDN博客](http://blog.csdn.net/liangklfang/article/details/51003120?locationNum=3&fps=1 "express插件之body-parser - CSDN博客")
+
+
+### 基于数据库的验证和用户信息保存
+
+mongoose 的说明手册中；`Model#sava()`表示对象方法（先要new出一个对象）， `Model.find()`表示类方法（静态方法）。
+
+
+#### promise对象
+
+```javascript
+    //用户是否已经被注册
+    User.findOne({
+        username: username
+    }).then(function () {
+
+    });
+```
+上面的 User.findOne()返回的是一个promise对象，所以可以继续调用 then() 方法。
+
+**那么到底什么是 promise 对象？**
+
+[mongoose 文档（十） Promises - Surahe - 博客园](http://www.cnblogs.com/surahe/p/5202543.html)
+
+[Promises/A+](https://promisesaplus.com/ "Promises/A+")
+
+[Promise 对象 - ECMAScript 6入门](http://es6.ruanyifeng.com/#docs/promise "Promise 对象 - ECMAScript 6入门")
+
+
+
+
+
+
+
