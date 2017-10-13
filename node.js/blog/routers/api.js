@@ -27,7 +27,7 @@ router.use(function (req, res, next) {
  */
 
 //可以使用子路由
-//这里路径为 /api/user
+//这里路径为 /api/user/
 //注意这里需要是 post 方法，而非get方法
 router.post('/user/register',function (req, res, next) {
     // res.send('api - User');
@@ -93,11 +93,50 @@ router.post('/user/register',function (req, res, next) {
         console.log("发送：注册成功");
     });
 
-
-    // responseData.code = 0;
-    // responseData.message = "注册成功";
-    // res.json(responseData);
-
 });
+
+
+
+/*
+ * 登录
+ */
+router.post('/user/login', function (req, res) {
+    var username = req.body.username;
+    var password = req.body.password;
+
+    if (username == "" || password == ""){
+        responseData.code =1;
+        responseData.message = "用户名或密码不能为空";
+        res.json(responseData);
+        return;
+    }
+
+
+    //查询数据库中相同用户名和密码的记录是否存在，如果存在则登录成功
+    User.findOne({ //查询条件同时为用户名和密码
+        username:username,
+        password:password
+    }).then(function (userInfo) {
+        if (!userInfo){
+            responseData.code = 2;
+            responseData.message = "用户名或密码错误";
+            res.json(responseData);
+            return;
+        }
+
+        //用户登录成功
+        responseData.code = 0;
+        responseData.message = "登录成功";
+        //TODO 为responseData随时添加的值
+        responseData.userInfo = {
+            _id:userInfo.id,
+            username: userInfo.username
+        };
+        res.json(responseData);
+        return;
+
+    })
+});
+
 
 module.exports = router;
