@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var User = require('../models/user');
+var Category = require('../models/Category');
 
 
 // 避免非管理员通过直接输入地址的方式进入后台管理界面
@@ -69,6 +70,74 @@ router.get('/user',function (req, res) {
         });
     });
 
+});
+
+
+/*
+* 分类首页
+* */
+router.get('/category',function (req, res, next) {
+
+    res.render('admin/category_index',{
+        userInfo:req.userInfo
+    })
+});
+
+
+/**
+ * 分类的添加
+ *
+ * 以get方式访问，返回界面
+ */
+router.get('/category/add',function (req, res, next) {
+    res.render('admin/category_add',{
+        userInfo:req.userInfo
+    })
+});
+
+
+/**
+ * 分类的保存
+ *
+ * 以post访问，则保存其提交过来的数据
+ */
+router.post('/category/add',function (req, res) {
+
+    // console.log(req.body.name);
+
+    var name = req.body.name || '';
+
+    if (name == ''){ //这里没有利用ajax，所以当数据非法则直接返回一个错误页面
+        res.render('admin/error',{
+            userInfo:req.userInfo,
+            message:'名称不能为空'
+        });
+        return;
+    }
+
+    //数据库中是否已经存在同名分类
+    Category.findOne({
+        name:name
+    }).then(function (rs) {
+        if (rs){
+            //数据库中已经存在该分类
+            res.render('admin/error',{
+                userInfo:req.userInfo,
+                message: "分类已经存在"
+            })
+        } else {
+            //保存到数据库
+            return new Category({
+                name:name
+            }).save();
+        }
+    }).then(function (newCategory) {
+        res.render('admin/success',{
+            userInfo:req.userInfo,
+            message:'分类保存成功',
+            url:'/admin/category'
+        });
+    })
 });
 
 module.exports = router;

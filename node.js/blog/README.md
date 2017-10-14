@@ -366,6 +366,8 @@ router.use(function (req, res, next) {
 然后让其它文件继承此文件，并实现 block 中的内容。
 
 
+> 存在一个issue，已经在Github中建立该issue， #3
+
 ### bootstrap的用法
 
 进入bootstrap v3的中文文档页面，[Bootstrap 中文文档](http://v3.bootcss.com/)。  
@@ -403,6 +405,28 @@ router.use(function (req, res, next) {
 ```
 
 同样，在很多地方需要用到分页，所以可以将其作为模板。
+
+
+
+### 后台管理-添加博客分类功能
+
+
+Bootstrap的表单在“全局CSS样式”中寻找。
+
+
+可以这样返回上一步 ： 
+```javascript
+  <div class="panel-footer">
+      <!-- 返回上一页 -->
+      <a href="javascript:window.history.back();">返回上一步</a>
+  </div>
+```
+
+
+凡是继承了layout.html的页面在渲染时都需要传入userInfo，因为layout.html中会用到。
+```javascript
+{% extends 'layout.html' %}
+```
 
 
 

@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+
+<!-- 面包屑导航 -->
+<ol class="breadcrumb">
+    <li><a href="/admin">管理首页</a></li>
+    <li><span>错误提示</span></li>
+</ol>
+
+<!-- bootstrap的 面板 -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">错误提示</h3>
+    </div>
+    <div class="panel-body" style='color: red'>
+        {{message}}
+    </div>
+
+    <!-- 这里是自行添加 -->
+    <div class="panel-footer">
+        {% if url %}
+        <!-- 跳转到某url -->
+        <a href="{{url}}">点击跳转</a>
+        {% else %}
+        <!-- 返回上一页 -->
+        <a href="javascript:window.history.back();">返回上一步</a>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
