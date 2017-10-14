@@ -366,6 +366,19 @@ router.use(function (req, res, next) {
 然后让其它文件继承此文件，并实现 block 中的内容。
 
 
+### bootstrap的用法
+
+进入bootstrap v3的中文文档页面，[Bootstrap 中文文档](http://v3.bootcss.com/)。  
+
+* 从 “组件” 标签页中可以找到各种已经定义好的html组件。
+* 从 “全局CSS样式” 标签页中可以找到能够应用于各元素的样式。更改组件的样式。
+
+### 后台管理的注册用户数据展示
+
+从bootstrap复制组件，应用到项目中。
+
+
+
 
 
 
