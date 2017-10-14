@@ -5,6 +5,7 @@ var router = express.Router();
 //这里路径为 /user
 router.get('/',function (req, res, next) {
     // res.send(' 首页 ');
+    console.log(req.userInfo);
     res.render('main/index',{   //第二个参数中的数据用于分配给模板使用
         userInfo:req.userInfo
     });
