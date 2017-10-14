@@ -33,14 +33,40 @@ router.get('/user',function (req, res) {
 
     /*
     * 从数据库中读取所有的用户数据
+    *
+    * 分页实现：
+    * 利用 limit()和skip()方法
+    * 跳过的页数 = （当前页 -1）* 每页显示的页数
     * */
-    User.find().then(function (users) {
-        // console.log(users);
-        res.render('admin/user_index',{
-            userInfo:req.userInfo,
-            users:users
-        });
 
+    var page = Number(req.query.page || 1);
+    var limit = 10;
+    var pages = 0;
+
+    User.count().then(function (count) {
+
+        //计算总页数。ceil 为向上取整
+        pages = Math.ceil(count / limit);
+        //取值不能超过 pages(总页数)
+        page = Math.min(page,pages);
+        //取值不能小于1
+        page = Math.max(page,1);
+
+        var skip = (page -1) * limit;
+
+
+        User.find().limit(limit).skip(skip).then(function (users) {
+            // console.log(users);
+            res.render('admin/user_index',{
+                userInfo:req.userInfo,
+                users:users,
+                page:page,
+                pages:pages,
+                limit:limit,
+                count:count
+            });
+
+        });
     });
 
 });

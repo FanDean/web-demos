@@ -9,6 +9,10 @@
 
 <h3>用户列表</h3>
 
+<!-- 在上面也添加一个分页 -->
+{%include 'page.html'%}
+
+
 <table class="table table-hover table-striped">
     <tr>
         <th>ID</th>
@@ -29,5 +33,8 @@
     {% endfor %}
 </table>
 
+<!-- 使用include语法将其包含进来 -->
+
+{%include 'page.html'%}
 
 {% endblock %}
