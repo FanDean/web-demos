@@ -337,6 +337,33 @@ app.use(function (req, res, next) {
 注意，为了安全考虑是否是管理员的信息不能存放到cookie当中，而需要我们实时的进行验证。
 
 
+## 后台管理功能及界面的搭建
+
+需要避免非管理员通过直接输入地址的方式进入后台管理界面。
+
+```javascript
+//避免非管理员通过直接输入地址的方式进入后台管理界面
+// 访问 /admin 下的任何子目录都会执行该中间件
+router.use(function (req, res, next) {
+    if (!req.userInfo.isAdmin){
+        //非管理员
+        res.send("<h1 style='color: red'>只有管理员才能进入后台管理界面</h1>");
+    }
+    next();
+});
+```
+
+顶部导航：直接从Bootstrap网站提供的组件中复制，再删除不必要的部分
+
+考虑到管理页面的顶部导航是不变的，
+所以可以将导航栏作为模板(只需将其写入一个文件，一般为layout.html文件)。
+模板中的可变部分，我们可以使用block进行占位，例如：下面定义一个名叫main的block。
+```javascript
+{%block main%}{endblock}
+```
+
+
+然后让其它文件继承此文件，并实现 block 中的内容。
 
 
 

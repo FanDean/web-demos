@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.css">
+</head>
+<body>
+
+<!-- 顶部导航：直接从Bootstrap网站提供的组件中复制，再删除不必要的部分 -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <!-- 这里去掉了响应式的部分代码 -->
+
+            <a class="navbar-brand" href="/admin">后台管理</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#">用户管理</a></li>
+                <!--<li class="dropdown">-->
+                <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
+                <!--<ul class="dropdown-menu">-->
+                <!--<li><a href="#">Action</a></li>-->
+                <!--<li><a href="#">Another action</a></li>-->
+                <!--<li><a href="#">Something else here</a></li>-->
+                <!--<li role="separator" class="divider"></li>-->
+                <!--<li><a href="#">Separated link</a></li>-->
+                <!--<li role="separator" class="divider"></li>-->
+                <!--<li><a href="#">One more separated link</a></li>-->
+                <!--</ul>-->
+                <!--</li>-->
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{userInfo.username}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/api/logout">退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<main class="container">
+    <div class="jumbotron">
+        {%block main%}{endblock}
+
+    </div>
+</main>
+
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.js"></script>
+</body>
+</html>
