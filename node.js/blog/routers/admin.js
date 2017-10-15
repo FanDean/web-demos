@@ -3,6 +3,7 @@ var router = express.Router();
 
 var User = require('../models/user');
 var Category = require('../models/Category');
+var Content = require('../models/Content');
 
 
 // 避免非管理员通过直接输入地址的方式进入后台管理界面
@@ -68,7 +69,8 @@ router.get('/user', function (req, res) {
                 page: page,
                 pages: pages,
                 limit: limit,
-                count: count
+                count: count,
+                url:"/admin/user"
             });
 
         });
@@ -107,7 +109,8 @@ router.get('/category', function (req, res, next) {
                 page: page,
                 pages: pages,
                 limit: limit,
-                count: count
+                count: count,
+                url:"/admin/category"
             });
 
         });
@@ -290,6 +293,117 @@ router.get('/category/delete', function (req, res) {
         });
     })
 });
+
+
+/**
+ * 内容首页
+ */
+router.get('/content',function (req, res) {
+
+    //分页
+    var page = Number(req.query.page || 1);
+    var limit = 10;
+    var pages = 0;
+
+    Content.count().then(function (count) {
+
+        //计算总页数。ceil 为向上取整
+        pages = Math.ceil(count / limit);
+        //取值不能超过 pages(总页数)
+        page = Math.min(page, pages);
+        //取值不能小于1
+        page = Math.max(page, 1);
+
+        var skip = (page - 1) * limit;
+
+        //因为Content关联了Category，所以我们可以使用populate将其数据一起带出
+        Content.find().sort({_id:-1}).limit(limit).skip(skip).populate('category').then(function (contents) {
+            console.log(contents);
+
+            res.render('admin/content_index', {
+                userInfo: req.userInfo,
+                contents: contents,
+                page: page,
+                pages: pages,
+                limit: limit,
+                count: count,
+                url:"/admin/content"
+            });
+
+        });
+    });
+
+
+    // res.render('admin/content_index',{
+    //     userInfo:req.userInfo,
+    //     url:'/admin/content'
+    // });
+});
+
+
+/**
+ * 内容添加
+ */
+router.get('/content/add',function (req, res) {
+
+    //读取分类信息
+    Category.find().then(function (categories) {
+        res.render('admin/content_add',{
+            userInfo:req.userInfo,
+            categories:categories
+        });
+    });
+
+});
+
+
+/**
+ * 内容保存
+ */
+router.post('/content/add',function (req, res) {
+    console.log(req.body);
+
+    //只是简单的验证数据，还有很多漏洞
+    if(req.body.categories == ''){
+        res.render('admin/error',{
+            userInfo:req.userInfo,
+            message:"内容分类不能为空"
+        });
+        return;
+    }
+
+    if(req.body.title == ''){
+        res.render('admin/error',{
+            userInfo:req.userInfo,
+            message:"内容标题不能为空"
+        });
+        return;
+    }
+
+    if(req.body.content == ''){
+        res.render('admin/error',{
+            userInfo:req.userInfo,
+            message:"内容不能为空"
+        });
+        return;
+    }
+
+    //保存数据到数据库
+    new Content({
+        category:req.body.category,
+        title:req.body.title,
+        description:req.body.description,
+        content:req.body.content
+    }).save().then(function (newContent) {
+        if (newContent){
+            res.render('admin/success',{
+                userInfo:req.userInfo,
+                message:"内容保存成功"
+            });
+        }
+    });
+});
+
 
 
 module.exports = router;

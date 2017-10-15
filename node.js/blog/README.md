@@ -468,13 +468,40 @@ Error: Can't set headers after they are sent.
 解决办法： [mongoose DeprecationWarning · Issue #5 · FanDean/web-demos](https://github.com/FanDean/web-demos/issues/5 "mongoose DeprecationWarning · Issue #5 · FanDean/web-demos")
 
 
+### 后台管理-博客内容添加管理
+
+发现一个现象：
+
+```
+<select name="category" id="category" class="form-control">
+    {% for category in categories %}
+    <option value="{{category._id}}">{{category.name}}</option>
+    {% endfor %}
+</select>
+```
+
+```
+<select name="category" id="category" class="form-control">
+    {% for category in categories %}
+    <option value="{{category.id}}">{{category.name}}</option>
+    {% endfor %}
+</select>
+```
+通过查看最终页面的源代码，发现： 
+* `{{category._id}}`得到的是一个 ObjectId的对象
+* `{{category.id}}`得到的是一个id字符串（想要的结果）
+
+但是数据库中的内容是
+```
+> db.categories.find()
+{ "_id" : ObjectId("59e23af74f14031c6425adbf"), "name" : "Android", "__v" : 0 }
+{ "_id" : ObjectId("59e30d915f12f73f4d43d8ce"), "name" : "JSP", "__v" : 0 }
+```
+并且当利用id更新数据时必须使用`_id`。
 
 
-### 优化
 
-点击“上/下一页”
 
-成功和失败页面，添加继续添加的链接。
 
 
 
