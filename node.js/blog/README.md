@@ -430,6 +430,43 @@ Bootstrap的表单在“全局CSS样式”中寻找。
 
 
 
+### 后台管理-博客分类的修改和删除
+
+
+错误1： 
+
+当在主页和admin之间多次跳转时出现下面的错误：
+```javascript
+_http_outgoing.js:356
+    throw new Error('Can\'t set headers after they are sent.');
+    ^
+
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (_http_outgoing.js:356:11)
+    at ServerResponse.header (/home/fan/workspace/web-demos/node.js/blog/node_modules/express/lib/response.js:767:10)
+    at ServerResponse.send (/home/fan/workspace/web-demos/node.js/blog/node_modules/express/lib/response.js:170:12)
+    at done (/home/fan/workspace/web-demos/node.js/blog/node_modules/express/lib/response.js:1004:10)
+    at /home/fan/workspace/web-demos/node.js/blog/node_modules/swig/lib/swig.js:565:9
+    at /home/fan/workspace/web-demos/node.js/blog/node_modules/swig/lib/swig.js:690:9
+    at tryToString (fs.js:455:3)
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:442:12)
+```
+“Can’t set headers after they are sent.” => “不能发送headers因为已经发送过一次了” => 在处理HTTP请求时，服务器会先输出响应头，然后再输出主体内容，而一旦输出过一次响应头（比如执行过 res.writeHead() 或 res.write() 或 res.end()），你再尝试通过 res.setHeader() 或 res.writeHead() 来设置响应头时（有些方法比如 res.redirect() 会调用 res.writeHead()），就会报这个错误。
+
+（说明：express中的 res.header() 相当于 res.writeHead() ，res.send() 相当于 res.write() ）
+
+错误处理的过程见 GitHub issue。   
+[Can't set headers after they are sent. · Issue #4 · FanDean/web-demos](https://github.com/FanDean/web-demos/issues/4 "Can't set headers after they are sent. · Issue #4 · FanDean/web-demos")
+
+
+错误3:
+```javascript
+(node:19829) DeprecationWarning: `open()` is deprecated in mongoose >= 4.11.0, use `openUri()` instead, or set the `useMongoClient` option if using `connect()` or `createConnection()`. See http://mongoosejs.com/docs/connections.html#use-mongo-client
+数据库连接成功
+(node:19829) DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated, plug in your own promise library instead: http://mongoosejs.com/docs/promises.html
+```
+解决办法： [mongoose DeprecationWarning · Issue #5 · FanDean/web-demos](https://github.com/FanDean/web-demos/issues/5 "mongoose DeprecationWarning · Issue #5 · FanDean/web-demos")
+
 
 
 ## 视频地址

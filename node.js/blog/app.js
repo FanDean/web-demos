@@ -118,13 +118,29 @@ app.use('/',require('./routers/main'));
 
 
 
-//连接到blog数据库
-mongoose.connect('mongodb://127.0.0.1:27017/blog',function (err) {
-    if (err){
-        console.log('数据库连接失败');
-    } else {
+// 连接到blog数据库
+// mongoose.connect('mongodb://127.0.0.1:27017/blog',function (err) {
+//     if (err){
+//         console.log('数据库连接失败');
+//     } else {
+//         console.log('数据库连接成功');
+//         //只有数据库连接成功才开始监听
+//         app.listen(8081);
+//     }
+// });
+
+// 连接到blog数据库
+mongoose.Promise = global.Promise;
+var promise = mongoose.connect('mongodb://127.0.0.1:27017/blog', {
+    useMongoClient: true
+});
+promise.then(function (db) {
+    if (db){
         console.log('数据库连接成功');
         //只有数据库连接成功才开始监听
         app.listen(8081);
+    } else {
+        console.log('数据库连接失败');
     }
 });
+

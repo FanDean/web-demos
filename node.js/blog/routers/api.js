@@ -29,7 +29,7 @@ router.use(function (req, res, next) {
 //可以使用子路由
 //这里路径为 /api/user/
 //注意这里需要是 post 方法，而非get方法
-router.post('/user/register',function (req, res, next) {
+router.post('/user/register',function (req, res) {
     // res.send('api - User');
     // console.log(req.body);
 
