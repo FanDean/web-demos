@@ -536,6 +536,16 @@ node_modules > swig > lib > filters.js （在该文件中寻找date函数）
 ```
 
 
+
+## 前台内容分类展示
+
+多个查询参数：
+
+上一页： `<li class="previous"><a href="/?category={{data.category}}&page={{data.page - 1 }}">上一页</a></li>`
+
+
+
+
 ## 视频地址
 
 [Node.js 实战开发：博客系统_腾讯课堂](https://ke.qq.com/course/185893 "Node.js 实战开发：博客系统_腾讯课堂")

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Fan's Blog</title>
+    <link href="https://cdn.bootcss.com/normalize/7.0.0/normalize.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/main.css">
     <!--<link rel="stylesheet" href="fontAwesome/css/font-awesome.min.css">-->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -16,10 +17,18 @@
 
 <nav>
     <div class="menu">
+        {% if data.category == '' %}
         <a href="/" class="focus">首页</a>
+        {% else %}
+        <a href="/">首页</a>
+        {% endif %}
 
-        {% for category in data.categories %}
-            <a href="/">{{category.name}}</a>
+        {% for category2 in data.categories %}
+            {% if data.category == category2.id %}
+            <a href="/?category={{category2.id}}" class="focus">{{category2.name}}</a>
+            {% else %}
+            <a href="/?category={{category2.id}}">{{category2.name}}</a>
+            {% endif %}
         {% endfor %}
     </div>
 </nav>
@@ -30,9 +39,9 @@
         <section class="listBox">
             <h1>{{content.title}}</h1>
             <p class="colDefault">
-                作者：<span class="colInfo">{{content.user.username}}</span> -
-                时间：<span class="colInfo">{{content.addTime | date('Y-m-d',-8*60)}}</span> -
-                阅读：<span class="colInfo">{{content.views}}</span> -
+                作者：<span class="colInfo">{{content.user.username}}</span>
+                时间：<span class="colInfo">{{content.addTime | date('Y-m-d',-8*60)}}</span>
+                阅读：<span class="colInfo">{{content.views}}</span>
                 评论：<span class="colInfo">0</span>
             </p>
             <dfn>
@@ -42,13 +51,24 @@
         </section>
         {% endfor %}
 
+        {% if data.count > 0 %}
         <div class="pager">
             <ul class="clear">
-                <li class="previous"><a href="/?page={{data.page - 1 }}">上一页</a></li>
+                {% if data.page <= 1 %}
+                <span class="previous">没有上一页</span>
+                {% else %}
+                <li class="previous"><a href="/?category={{data.category}}&page={{data.page - 1 }}">上一页</a></li>
+                {% endif %}
                 <li><strong>{{data.page}} / {{data.pages}}</strong></li>
-                <li class="next"><a href="/?page={{data.page + 1}}">下一页</a></li>
+                {% if data.page >= data.pages %}
+                <span class="next">没有下一页</span>
+                {% else %}
+                <li class="next"><a href="/?category={{data.category}}&page={{data.page + 1 }}">下一页</a></li>
+                {% endif %}
+                <!--<li class="next"><a href="/?page={{data.page + 1}}">下一页</a></li>-->
             </ul>
         </div>
+        {% endif %}
     </div>
 
     <aside class="mainRight">

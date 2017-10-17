@@ -16,14 +16,20 @@ router.get('/',function (req, res, next) {
         limit:5,
         pages:0,
         count:0,
-        contents:[]
+        contents:[],
+        category:req.query.category || ''
     };
+
+    var where = {};
+    if (data.category){
+        where.category = data.category
+    }
 
     Category.find().sort({_id:-1}).then(function (categories) {
         //读取所有的分类信息
         data.categories = categories;
         //读取内容数
-        return Content.count();
+        return Content.where(where).count();
     }).then(function (count) {
         data.count = count;
         //计算总页数。ceil 为向上取整
@@ -35,7 +41,7 @@ router.get('/',function (req, res, next) {
 
         var skip = (data.page - 1) * data.limit;
 
-        return Content.find().sort({_id:-1}).limit(data.limit).skip(skip).populate(['category','user']);
+        return Content.where(where).find().sort({_id:-1}).limit(data.limit).skip(skip).populate(['category','user']);
     }).then(function(contents) {
         data.contents = contents;
         console.log(data);

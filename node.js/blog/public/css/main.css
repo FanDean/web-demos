@@ -38,12 +38,6 @@ header{
     color: orangered;
 }
 
-nav{
-    box-sizing: border-box;
-    width: 100%;
-    margin: 0 0 2em 0;
-    padding: 10px;
-}
 
 main {
     max-width: 960px;
@@ -142,6 +136,7 @@ section h2{
 .rightBox .title{
     font-size: 18px;
     text-align: left;
+    padding-bottom: 10px;
     border-bottom: 2px solid orangered;
 }
 
@@ -197,11 +192,6 @@ a{
 
 }
 
-.menu a{
-    margin: 8px;
-    font-size: 20px;
-}
-
 
 /* 阅读全文 */
 .function a{
@@ -209,4 +199,50 @@ a{
     padding: 8px;
     color: white;
     border-radius: 4px;
+}
+
+
+/*
+    导航
+ */
+
+nav{
+    /*box-sizing: border-box;*/
+    width: 100%;
+    margin: 0 0 2em 0;
+    min-height: 2em;
+    /*padding: 10px;*/
+}
+
+
+.menu{
+    border-top: 5px solid orangered;
+    border-bottom: 1px solid #c8c8c8;
+    padding: 10px 0;
+}
+
+
+.menu a{
+    padding: 10px 15px;
+    font-size: 20px;
+    border-left:1px dashed #c8c8c8;
+}
+
+
+.menu a:first-child{
+    border-left:none;
+}
+
+.focus{
+    border-bottom: 3px solid orangered;
+}
+
+
+.menu a:hover{
+    /*background: orangered;*/
+    border-bottom: 2px solid orangered;
+}
+
+.menu a:hover{
+
 }
