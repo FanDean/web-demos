@@ -1,0 +1,16 @@
+{%extends 'layout.html'%}
+
+{%block content%}
+<section class="listBox">
+    <h1>{{data.content.title}}</h1>
+    <p class="colDefault">
+        作者：<span class="colInfo">{{data.content.user.username}}</span>
+        时间：<span class="colInfo">{{data.content.addTime | date('Y-m-d',-8*60)}}</span>
+        阅读：<span class="colInfo">{{data.content.views}}</span>
+        评论：<span class="colInfo">0</span>
+    </p>
+    <dfn>
+        {{data.content.content}}
+    </dfn>
+</section>
+{%endblock%}
