@@ -16,7 +16,7 @@ var bodyParser = require('body-parser');
 //加载cookies模块
 var cookies = require('cookies');
 //获取user模型
-var User = require('./models/user');
+var User = require('./models/User');
 
 //创建 app 应用  => Node.js createrServer();
 var app = express();

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var User = require('../models/user');
+var User = require('../models/User');
 var Category = require('../models/Category');
 var Content = require('../models/Content');
 
@@ -317,7 +317,7 @@ router.get('/content',function (req, res) {
         var skip = (page - 1) * limit;
 
         //因为Content关联了Category，所以我们可以使用populate将其数据一起带出
-        Content.find().sort({_id:-1}).limit(limit).skip(skip).populate('category').then(function (contents) {
+        Content.find().sort({_id:-1}).limit(limit).skip(skip).populate(['category','user']).then(function (contents) {
             // console.log(contents);
 
             res.render('admin/content_index', {
@@ -387,7 +387,9 @@ router.post('/content/add',function (req, res) {
         category:req.body.category,
         title:req.body.title,
         description:req.body.description,
-        content:req.body.content
+        content:req.body.content,
+        user:req.userInfo._id.toString(),
+        addTime: new Date()
     }).save().then(function (newContent) {
         if (newContent){
             res.render('admin/success',{

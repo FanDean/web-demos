@@ -24,5 +24,25 @@ module.exports = new mongoose.Schema({
     content:{
         type:String,
         default:''
+    },
+
+    //用户的id（关联字段)
+    user:{
+        //类型
+        type:mongoose.Schema.Types.ObjectId,
+        //引用 (引用的是一个model,位于models目录下,这里是User)
+        ref:'User'
+    },
+
+    //添加时间
+    addTime:{
+        type:Date,
+        default: new Date()
+    },
+
+    //阅读数
+    views:{
+        type:Number,
+        default:0
     }
 });
