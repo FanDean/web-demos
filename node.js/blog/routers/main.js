@@ -12,11 +12,11 @@ var data;
  */
 router.use(function (req, res, next) {
     data = {
-        userInfo:req.userInfo,
-        categories:[] //用于头部分类显示
+        userInfo: req.userInfo,
+        categories: [] //用于头部分类显示
     };
 
-    Category.find().sort({_id:-1}).then(function (categories) {
+    Category.find().sort({_id: -1}).then(function (categories) {
         //读取所有的分类信息
         data.categories = categories;
     });
@@ -26,19 +26,18 @@ router.use(function (req, res, next) {
 
 //可以使用子路由
 //这里路径为 /user
-router.get('/',function (req, res, next) {
+router.get('/', function (req, res, next) {
 
-        data.page=Number(req.query.page || 1);
-        data.limit=5;
-        data.pages=0;
-        data.count=0;
-        data.contents=[];
-        data.category=req.query.category || '';
-
+    data.page = Number(req.query.page || 1);
+    data.limit = 5;
+    data.pages = 0;
+    data.count = 0;
+    data.contents = [];
+    data.category = req.query.category || '';
 
 
     var where = {};
-    if (data.category){
+    if (data.category) {
         where.category = data.category
     }
 
@@ -54,13 +53,13 @@ router.get('/',function (req, res, next) {
         var skip = (data.page - 1) * data.limit;
 
         return Content.where(where)
-            .find().sort({_id:-1}).limit(data.limit).skip(skip)
-            .populate(['category','user']);
+            .find().sort({_id: -1}).limit(data.limit).skip(skip)
+            .populate(['category', 'user']);
 
-    }).then(function(contents) {
+    }).then(function (contents) {
         data.contents = contents;
-        console.log(data);
-        res.render('main/index', {data:data});
+        // console.log(data);
+        res.render('main/index', {data: data});
     })
 
 });
@@ -69,20 +68,20 @@ router.get('/',function (req, res, next) {
 /**
  * 内容详情页
  */
-router.get('/view',function (req, res) {
+router.get('/view', function (req, res) {
     var contentid = req.query.contentid || '';
 
     Content.findOne({
-        _id:contentid
-    }).populate(['category','user']).then(function (content) {
-        if (!content){
+        _id: contentid
+    }).populate(['category', 'user']).then(function (content) {
+        if (!content) {
             res.send("<h1>没有内容</h1>");
         } else {
             data.content = content;
             //在渲染之前，这样简单的增加阅读数，再保存即可
             content.views++;
             content.save();
-            res.render('main/view',{data:data});
+            res.render('main/view', {data: data});
 
             // Content.update({
             //     _id:contentid

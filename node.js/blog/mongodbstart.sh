@@ -1,0 +1,1 @@
+mongod --dbpath /home/fan/workspace/web-demos/node.js/blog/db

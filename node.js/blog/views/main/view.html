@@ -7,10 +7,49 @@
         作者：<span class="colInfo">{{data.content.user.username}}</span>
         时间：<span class="colInfo">{{data.content.addTime | date('Y-m-d',-8*60)}}</span>
         阅读：<span class="colInfo">{{data.content.views}}</span>
-        评论：<span class="colInfo">0</span>
+        评论：<span class="colInfo">{{data.content.comments.length}}</span>
     </p>
     <dfn>
         {{data.content.content}}
     </dfn>
 </section>
+
+<!-- 评论 -->
+<div class="listBox message">
+
+    <h3 class="textLeft"><strong>评论</strong><span class="em">一共有
+        <em id="messageCount">0</em>条评论</span></h3>
+
+    {%if data.userInfo._id %}
+    <p class="textLeft">zmouse</p>
+    <p class="textLeft clear">
+        <textarea name="" id="messageContent"></textarea>
+        <input type="hidden" id="contentId" value="{{data.content.id}}">
+        <button id="messageBtn" class="submit">提交</button>
+    </p>
+    {%else%}
+    <p class="dgDanger" style="line-height: 30px;">你还没有登录，请先登录！</p>
+    {%endif%}
+
+    <div class="messageList" style="display: block;">
+        <!--<div class="messageBox">-->
+            <!--<p class="name clear">-->
+                <!--<span class="fl">admin</span><span class="fr">2017年10月15日</span>-->
+            <!--</p>-->
+            <!--<p>哈哈</p>-->
+        <!--</div>-->
+    </div>
+
+    <div class="pager">
+        <ul class="clear">
+            <li class="previous"><a href="javascript:;">上一页</a></li>
+            <li></li>
+            <li class="next"><a href="javascript:;">下一页</a></li>
+        </ul>
+    </div>
+</div>
+
+
+
+<script src="/js/comment.js"></script>
 {%endblock%}

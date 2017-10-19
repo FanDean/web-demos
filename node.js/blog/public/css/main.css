@@ -237,12 +237,68 @@ nav{
     border-bottom: 3px solid orangered;
 }
 
-
 .menu a:hover{
-    /*background: orangered;*/
     border-bottom: 2px solid orangered;
 }
 
-.menu a:hover{
 
+/*
+ 评论
+*/
+
+.textLeft{
+    text-align: left;
+}
+
+.textLeft .em{
+    float: right;
+    font-size: .5em;
+}
+
+#messageContent{
+    font:inherit;
+    padding: 2px;
+    resize: none;
+    width: 80%;
+    height: 80px;
+}
+
+#messageBtn{
+    background: dodgerblue;
+    width: 17%;
+    height: 40px;
+    float: right;
+    /*position: relative;*/
+    /*top: -2em;*/
+}
+
+
+.dgDanger{
+    background: red;
+    color: #ffffff;
+    text-align: center;
+}
+
+.messageBox{
+    margin: 10px 0;
+    border: 1px solid #c8c8c8;
+    padding: 0 15px;
+}
+
+.fl{
+
+    font-weight: bold;
+}
+
+.fr{
+    float: right;
+    font-size: .6em;
+}
+
+.clear{
+    clear: right;
+}
+
+button {
+    cursor: pointer;
 }

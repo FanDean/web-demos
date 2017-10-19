@@ -8,7 +8,7 @@
         作者：<span class="colInfo">{{content.user.username}}</span>
         时间：<span class="colInfo">{{content.addTime | date('Y-m-d',-8*60)}}</span>
         阅读：<span class="colInfo">{{content.views}}</span>
-        评论：<span class="colInfo">0</span>
+        评论：<span class="colInfo">{{content.comments.length}}</span>
     </p>
     <dfn>
         <p>{{content.description}}</p>
