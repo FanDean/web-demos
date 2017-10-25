@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Resume</title>
+    <link rel="stylesheet" href="../../../build/bootstrap/css/bootstrap.css">
+    <script src="../../../build/jquery.js"></script>
+    <script src="../../../build/bootstrap/js/bootstrap.js"></script>
+    <style>
+        body {
+            padding-top: 70px;}
+    </style>
+</head>
+<body class="container">
+
+<header>
+    <!-- class注释： 导航条  反转颜色的导航条  固定在页面顶部-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <!-- class注释： 自动测算内外边距 -->
+        <div class="container">
+            <!-- class注释：导航条头部区域-->
+            <div class="navbar-header">
+                <!-- class注释： "商标"大标题-->
+                <div class="navbar-brand">Personal Resume</div>
+
+                <!--
+                    该按钮只有在视窗缩小到一定大小后才显示
+                    点击按钮的效果：一旦浏览器缩小到一定位置，上方的菜单将会通过一个弹出按钮来向下展开
+                    class注释：可进行交互展开
+                    data-toggle 非侵入式的脚本编码方式 ： collapse表示点击按钮可以交替展开和收缩
+                    data-target 指定交替展开的对象 -->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#divNav">
+                    <!-- 按钮的样式：三个横条-->
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- 该按钮在电脑上默认显示(屏幕足够大)
+            当页面较小时 点击上面的按钮 *展开的内容*
+            class注释： 可展开  在导航条中可展开-->
+            <div id="divNav" class="collapse navbar-collapse">
+                <!-- class注释：导航 导航条 在导航条的右侧对齐-->
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <!-- class注释： 按钮 表示成功的按钮(绿色) 导航条中的按钮-->
+                        <!-- data-toggle="modal" 弹出一个模态对话框
+                            data-target 指定弹出的对象
+                            title 标题-->
+                        <button type="button" class="btn btn-success navbar-btn" data-toggle="modal"
+                                data-target="#divModal" title="Print">Print</button>
+                        <!--class注释：模态框 淡入淡出-->
+                        <div class="modal fade" id="divModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <!--class注释：表示关闭的按钮 -->
+                                        <!-- data-dismiss 指定点击该按钮时要关闭的对象-->
+                                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                                        <h4 class="modal-title">Print Resume</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Print Preview Or Print Config
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Closs</button>
+                                        <button type="button" class="btn btn-primary">Print</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- tooltip表示工具箱提示 (稍许不同之处，提示会在按钮的正下方弹出)-->
+                        <button type="button" class="btn btn-info navbar-btn" data-toggle="tooltip" data-placement="bottom" title="Download">Download</button>
+                        <script>
+                            $(function () {
+                                $('[data-toggle="tooltip"]').tooltip();
+                            })
+                        </script>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+<div class="row">
+    <!-- 左 -->
+    <div class="col-sm-3">
+        <div class="panel panel-default">
+
+            <div class="panel-heading">Personal Info</div>
+            <div class="panel-body">
+                <!-- class注释：响应式图片 添加圆角 添加相框-->
+                <img src="../images/2017-05-28_13-19-41.png" class="img-responsive img-rounded img-thumbnail" alt="Me"/>
+                <p class="text-center text-primary">Fan</p>
+                <address>
+                    <strong>Hunan.Shaoyang</strong> <br>
+                    <!-- class注释： 字体图标 表示home的图标-->
+                    <span class="glyphicon glyphicon-home" title="Address"> <code>Zhongfang</code></span> <br>
+                    <span class="glyphicon glyphicon-file" title="PostalCode"> <kbd>422700</kbd></span> <br>
+                    <span class="glyphicon glyphicon-phone" title="Mobile"> 13366666666</span> <br>
+                    <span class="glyphicon glyphicon-envelope" title="Email"> fan@gmail.com</span> <br>
+                </address>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">Personal Skill</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <span class="text-muted">HTML5</span>
+                    </div>
+                    <div class="col-sm-9">
+                        <!-- 进度 -->
+                        <div class="progress">
+                            <!-- 进度条 带斜线的进度条 激活(有动画效果)-->
+                            <div class="progress-bar progress-bar-striped active" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <span class="text-success">CSS3</span>
+                    </div>
+                    <div class="col-sm-9">
+                        <!-- 进度 -->
+                        <div class="progress">
+                            <!-- 进度条 带斜线的进度条 成功 激活(有动画效果)-->
+                            <div class="progress-bar progress-bar-striped progress-bar-success active" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <span class="text-info">JavaScript</span>
+                    </div>
+                    <div class="col-sm-9">
+                        <!-- 进度 -->
+                        <div class="progress">
+                            <!-- 进度条 带斜线的进度条 激活(有动画效果)-->
+                            <div class="progress-bar progress-bar-striped progress-bar-info active" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <span class="text-warning">vue.js</span>
+                    </div>
+                    <div class="col-sm-9">
+                        <!-- 进度 -->
+                        <div class="progress">
+                            <!-- 进度条 带斜线的进度条 激活(有动画效果)-->
+                            <div class="progress-bar progress-bar-striped progress-bar-warning active" style="width: 50%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <span class="text-danger">React</span>
+                </div>
+                <div class="col-sm-9">
+                    <!-- 进度 -->
+                    <div class="progress">
+                        <!-- 进度条 带斜线的进度条 激活(有动画效果)-->
+                        <div class="progress-bar progress-bar-striped progress-bar-danger active" style="width: 65%;"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">Contact Me</div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="email" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" id="email" class="form-control" placeholder="Email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="name" class="form-control" placeholder="Name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <!-- 向右偏移两列 自身占据10列-->
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <!-- pull-right 放在该行最右侧(使用浮动来完成) -->
+                            <button type="submit" class="btn btn-primary pull-right">Send</button>
+                            <!-- 清除 pull-right 的浮动效果-->
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 右 -->
+    <div class="col-sm-9">
+        <div class="jumbotron">
+            <p class="text-right small">Personal Details</p>
+            <p class="text-right small">Personal Details</p>
+            <p class="text-right small">Personal Details</p>
+        </div>
+
+        <!-- 面板组 -->
+        <div class="panel-group" id="accordion">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <a href="#collapseOne" data-toggle="collapse" data-parent="#accordion">Work Experense</a>
+                    </div>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-success">
+                                <div class="row">
+                                    <div class="col-sm-4">2016/07 - 2017/05</div>
+                                    <div class="col-sm-4">XXX 公司</div>
+                                    <div class="col-sm-4">软件工程师助理</div>
+                                </div>
+                            </li>
+                            <li class="list-group-item list-group-item-warning">
+                                <div class="row">
+                                    <div class="col-sm-4">2016/07 - 2017/05</div>
+                                    <div class="col-sm-4">XXX 公司</div>
+                                    <div class="col-sm-4">软件工程师助理</div>
+                                </div>
+                            </li>
+                            <li class="list-group-item list-group-item-info">
+                                <div class="row">
+                                    <div class="col-sm-4">2016/07 - 2017/05</div>
+                                    <div class="col-sm-4">XXX 公司</div>
+                                    <div class="col-sm-4">软件工程师助理</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <a href="#collapseTwo" data-toggle="collapse" data-parent="#accordion">Education</a>
+                    </div>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-success">
+                                <div class="row">
+                                    <div class="col-sm-4">2016/07 - 2017/05</div>
+                                    <div class="col-sm-4">XXX 学校</div>
+                                    <div class="col-sm-4">专业名称</div>
+                                </div>
+                            </li>
+                            <li class="list-group-item list-group-item-warning">
+                                <div class="row">
+                                    <div class="col-sm-4">2016/07 - 2017/05</div>
+                                    <div class="col-sm-4">XXX 学校</div>
+                                    <div class="col-sm-4">专业名称</div>
+                                </div>
+                            </li>
+                            <li class="list-group-item list-group-item-info">
+                                <div class="row">
+                                    <div class="col-sm-4">2016/07 - 2017/05</div>
+                                    <div class="col-sm-4">XXX 学校</div>
+                                    <div class="col-sm-4">专业名称</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <a href="#collapseThree" data-toggle="collapse" data-parent="#accordion">Project</a>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div id="divCarousel" class="carousel slide" data-ride="carousel">
+                                <!-- 圆点指示器 -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#divCarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#divCarousel" data-slide-to="1"></li>
+                                    <li data-target="#divCarousel" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <img src="../images/G.jpg" alt="..." class="img-responsive img-rounded"/>
+                                        <div class="carousel-caption">...</div>
+                                    </div>
+
+                                    <div class="item">
+                                        <img src="../images/Z.jpg" alt="..." class="img-responsive img-rounded"/>
+                                        <div class="carousel-caption">...</div>
+                                    </div>
+
+                                    <div class="item">
+                                        <img src="../images/X.jpg" alt="..." class="img-responsive img-rounded"/>
+                                        <div class="carousel-caption">...</div>
+                                    </div>
+                                </div>
+                                <a href="#divCarousel" class="left carousel-control" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                </a>
+                                <a href="#divCarousel" class="right carousel-control" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer>
+    <nav class="navbar-default navbar-fixed-bottom text-center">
+        All images and contents &copy; Fan
+    </nav>
+</footer>
+</body>
+</html>
