@@ -1,0 +1,109 @@
+/* 混合 */
+.font_hn {
+	color: red;
+	font-family: microsoft yahei, "黑体", Arial, Simsun, "Arial Unicode MS";
+}
+
+#font_hn {
+	color: blue;
+	font-family: microsoft yahei, "黑体", Arial, Simsun, "Arial Unicode MS";
+}
+
+h1 {
+	font-size: 28px;
+	.font_hn;
+}
+
+h2 {
+	font-size: 24px;
+	#font_hn;
+}
+
+
+/* 定义多个具有相同名称和参数数量的混合 */
+.mixin(@color){
+	color-1:@color;
+}
+  
+.mixin(@color; @padding:2){
+	color-2:@color;
+	padding-2:@padding;
+}
+
+.mixin(@color; @padding; @margin:2){
+	color-3:@color;
+	padding-3:@padding;
+	margin:@margin;
+}
+
+.some .selector div{
+	.mixin(#000,6);
+}
+
+/* 
+	匹配模式
+	*/
+//使用css画三角形（将一个div变为三角形）
+// .sanjiao{
+// 	width: 0;
+// 	height: 0;
+// 	overflow: hidden; //用来处理IE6的最小高度问题
+	
+// 	border-width:10px;
+// 	border-color: red transparent transparent transparent;
+// 	border-style: solid;
+// }
+
+//以匹配模式的方式实现各方向上的三角行
+//朝下的三角形
+.triangle(bottom,@w:5px,@c:#ccc){
+	border-width:@w;
+	border-color: @c transparent transparent transparent;
+	border-style: solid dashed dashed dashed;
+}
+//朝左的三角形
+.triangle(left,@w:5px,@c:#ccc){
+	border-width:@w;
+	border-color: transparent @c transparent transparent;
+	border-style: solid dashed dashed dashed;
+}
+//朝上的三角形
+.triangle(top,@w:5px,@c:#ccc){
+	border-width:@w;
+	border-color: transparent transparent @c transparent;
+	border-style: solid dashed dashed dashed;
+}
+//朝右的三角形
+.triangle(right,@w:5px,@c:#ccc){
+	border-width:@w;
+	border-color: transparent transparent transparent @c;
+	border-style: solid dashed dashed dashed;
+}
+
+//@_代表不管匹配的是谁，都需将下面的内容混淆进去
+//注意：后面的两个参数都不能省略
+.triangle(@_,@w:5px,@c:#ccc){
+	width: 0;
+	height: 0;
+	overflow: hidden; //用来处理IE6的最小高度问题
+}
+
+.sanjiao{
+	.triangle(top,50px);
+}
+
+
+/* 嵌套规则 */
+header{
+	width: 960px;
+	//嵌套 h1
+	h1{
+		font-size: 18px;
+		color: green;
+	}
+	.logo{
+		width: 300px;
+		height: 150px;
+		background: darkred;
+	}
+}

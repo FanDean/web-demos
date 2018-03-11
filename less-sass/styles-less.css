@@ -1,0 +1,51 @@
+/* 混合 */
+.font_hn {
+  color: red;
+  font-family: microsoft yahei, "黑体", Arial, Simsun, "Arial Unicode MS";
+}
+#font_hn {
+  color: blue;
+  font-family: microsoft yahei, "黑体", Arial, Simsun, "Arial Unicode MS";
+}
+h1 {
+  font-size: 28px;
+  color: red;
+  font-family: microsoft yahei, "黑体", Arial, Simsun, "Arial Unicode MS";
+}
+h2 {
+  font-size: 24px;
+  color: blue;
+  font-family: microsoft yahei, "黑体", Arial, Simsun, "Arial Unicode MS";
+}
+/* 定义多个具有相同名称和参数数量的混合 */
+.some .selector div {
+  color-2: #000;
+  padding-2: 6;
+  color-3: #000;
+  padding-3: 6;
+  margin: 2;
+}
+/* 
+	匹配模式
+	*/
+.sanjiao {
+  border-width: 50px;
+  border-color: transparent transparent #ccc transparent;
+  border-style: solid dashed dashed dashed;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+/* 嵌套规则 */
+header {
+  width: 960px;
+}
+header h1 {
+  font-size: 18px;
+  color: green;
+}
+header .logo {
+  width: 300px;
+  height: 150px;
+  background: darkred;
+}
