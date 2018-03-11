@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>行高</title>
+    <style>
+        div {
+            border: 1px solid red;
+            margin: 10px;
+            width: 320px;
+        }
+
+        #div3 {
+            line-height: 16px;
+            font-size: 16px;
+        }
+
+        #div4 {
+            line-height: 10px;
+            font-size: 16px;
+        }
+
+        #div5 {
+            line-height: 16px;
+            height: 30px;
+            font-size: 16px;
+        }
+
+        #div6 {
+            line-height: 26px;
+            height: 26px;
+            font-size: 14px;
+        }
+
+        #div7 {
+            line-height: 26px;
+            height: 16px;
+            font-size: 20px;
+        }
+
+        #div9 {
+            line-height: 26px;
+            height: 16px;
+            font-size: 20px;
+        }
+
+        #div10 {
+            font: bold italic 26px "楷体";
+            /* font 复合样式必须注意顺序 */
+            /*font: bold 26px italic  "楷体"*/
+        }
+
+        #div11 {
+            font: bold italic 26px/40px "宋体"
+        }
+
+        #bug {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h2>行高 line-height</h2>
+<div>
+    <div id="div1">欢迎来到我的blog</div>
+    <div id="div2">欢迎 纯中文</div>
+    <div id="div3">行高与字体大小一样</div>
+    <div id="div4">行高比字体小</div>
+</div>
+<h3>容器高度height与行高line-height</h3>
+<div id="div5">容器高度比行高大</div>
+<div id="div6">容器高度与行高相同</div>
+<div id="div7">容器高度比行高小</div>
+<h3>多行文字</h3>
+<div id="div8">这里是多行文字，多行，多行，多行，容器高度未设置，容器被内容撑开</div>
+<div id="div9">这里是多行文字，多行，多行，多行，容器高度固定，容器没有被内容撑开</div>
+
+<h3 id="bug">font复合样式和行高</h3>
+<div id="div10">font复合样式必须注意顺序</div>
+<div id="div11">复合样式和行高</div>
+<p>在字体大小后加一斜杠再输入行高值(个人觉得还是不建议这种写法)</p>
+<p>上面留有一个小bug</p>
+</body>
+</html>
