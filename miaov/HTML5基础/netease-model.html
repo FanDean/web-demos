@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网易产品模块练习</title>
+    <style>
+        #netease-model{
+            box-sizing: border-box;
+            width: 800px;
+            height: 800px;
+            background: url("img/netease-model-bg.png") repeat-x;
+            padding:93px 150px;
+        }
+
+        #netease-model > div {
+            border-left:2px solid #beafe2;
+            border-right:2px solid #beafe2;
+            border-bottom: 2px solid #ece7f7;
+            /* 不可这样提取 */
+            /*background: white no-repeat  39px center;*/
+            font-size: 16px;
+            line-height: 38px;
+            font-family:"宋体";
+            /* 测量宽度-空格宽度： 33 - 8 ， ... 还是随便取 */
+            word-spacing: 20px;
+
+            /* TODO: 添加padding后会增大元素，所以添加下面的语句 */
+            box-sizing: border-box;
+            padding: 11px 4px 13px 105px;
+            /*padding-left: 105px;*/
+
+            /* 单词换行: keep-all 不允许将单词截断 */
+            word-break:keep-all;
+        }
+
+        #miaov{
+            height: 120px;
+            background: url("img/miaov.png") no-repeat;
+            border-top: 2px solid #beafe2;
+        }
+
+        #xinfeng{
+            height: 98px;
+            background: white url("img/xinfeng.png") no-repeat 39px 34px;
+            /* 语法错误 */
+            /*background-image: url("img/xinfeng.png");*/
+            /* TODO:  解决方法之一： 考虑padding，重新计算，并标明固定高度 */
+            /*line-height: 73px;*/
+
+            /* 网上看到的一种让文本垂直居中的方法：使用下面的语句 */
+            display: flex;
+            align-items:center; /*实现垂直居中*/
+        }
+
+        #shubiao{
+            height: 100px;
+            background: white url("img/shubiao.png") no-repeat 39px 34px;
+        }
+
+        #xiaolian{
+            height: 100px;
+            background: white url("img/xiaolian.png") no-repeat 39px 34px;
+        }
+
+        #wujiaoxing{
+            height: 192px;
+            border-bottom-color: #beafe2;
+            background: white url("img/wujiaoxing.png") no-repeat 39px 34px;
+        }
+    </style>
+</head>
+<body>
+    <div id="netease-model">
+        <div id="miaov"></div>
+        <div id="xinfeng">
+            <!-- TODO: 使用p为什么会产生间隙？ -->
+            <!--<p>免费邮 VIP邮箱 企业邮 邮箱大师</p>-->
+            免费邮 VIP邮箱 企业邮 邮箱大师
+        </div>
+        <div id="shubiao">
+            <!--<p>梦幻西游 新大话 藏地传奇 魔兽世界 星际争霸 倩女幽魂 武魂 新飞飞</p>-->
+            梦幻西游 新大话 藏地传奇 魔兽世界 星际争霸 倩女幽魂 武魂 天下 新飞飞
+        </div>
+        <div id="xiaolian">
+            <!--<p>考拉海购 LOFTER 博客 相册 花田交友 约会 女神 跟帖 抢购 CC语音 直播</p>-->
+            考拉海购 LOFTER 博客 相册 花田交友 约会 女神 跟帖 抢购 CC语音 直播
+        </div>
+        <div id="wujiaoxing">
+            <!--<p>彩票 理财 商城 贵金属 电影票 车险 有道词典 翻译 云笔记 印像派 公开课 云课堂 读小说 云音乐 火车票 游戏助手 公正邮 应用 杂志 新闻客户端 大学慕课</p>-->
+            彩票 理财 商城 贵金属 电影票 车险 有道词典 翻译 云笔记 印像派 公开课 云课堂 读小说 云音乐 火车票 游戏助手 公正邮 应用 杂志 新闻客户端 大学慕课
+        </div>
+    </div>
+</body>
+</html>
