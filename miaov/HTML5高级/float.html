@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>float浮动</title>
+    <style>
+        div{
+            margin: 4px;
+        }
+
+        .left{
+            width: 50px;
+            height: 50px;
+            margin: 4px;
+            font: 24px "黑体";
+            text-align: center;
+            background-color: lightseagreen;
+
+            /* 仔细观察左右浮动时 数字的顺序 */
+            float: left;
+            /*float: right;*/
+        }
+
+        .right{
+            width: 50px;
+            height: 50px;
+            margin: 4px;
+            font: 24px "黑体";
+            text-align: center;
+            background-color: coral;
+
+            /* 仔细观察左右浮动时 数字的顺序 */
+            /*float: left;*/
+            float: right;
+        }
+
+        /* 父子元素 */
+        .box1{
+            border: red solid 2px;
+        }
+        .item1{
+            width: 50px;
+            height: 50px;
+            background-color: lightslategrey;
+            float: left;
+        }
+
+        p{
+            clear: both;
+        }
+
+        .clearfix:after{
+            content: 'after伪类追加的内容，实际使用时将内容设置为空';
+            display: block;
+            clear: both;
+        }
+
+    </style>
+</head>
+<body>
+<h2>浮动特性</h2>
+<p>注意：下面左右浮动后数字的顺序</p>
+<div class="left">1</div>
+<div class="left">2</div>
+<div class="left">3</div>
+
+<div class="right">1</div>
+<div class="right">2</div>
+<div class="right">3</div>
+
+<p>这里要先清除一下上面的浮动</p>
+
+<h2>清除浮动</h2>
+<p>下面考虑一下父元素如何才能 <mark>包裹住</mark>浮动的子元素，示例：</p>
+
+<div class="box1">
+    <div class="item1"></div>
+</div>
+
+
+<p>方式一：为父元素box设置高度</p>
+<div class="box1" style="height: 60px">
+    <div class="item1"></div>
+</div>
+
+<p>方式二：为父元素也添加浮动</p>
+<div class="box1" style="float: left;">
+    <div class="item1"></div>
+</div>
+
+
+<p>方式三：为父元素添加inline-block</p>
+<div class="box1" style="display: inline-block;">
+    <div class="item1"></div>
+</div>
+
+<p>方式四：使用空标签清除浮动</p>
+<div class="box1">
+    <div class="item1"></div>
+    <div class="clearfix-1" style="clear:both;"></div>
+</div>
+
+<p>方式五：使用br清除浮动</p>
+<div class="box1">
+    <div class="item1"></div>
+    <br clear="all">
+</div>
+
+<p>方式六：使用overflow清除浮动</p>
+<div class="box1" style="overflow:hidden;">
+    <div class="item1"></div>
+</div>
+
+
+<p>方式七：使用after伪类清除浮动</p>
+<div class="box1 clearfix">
+    <div class="item1"></div>
+</div>
+
+</body>
+</html>

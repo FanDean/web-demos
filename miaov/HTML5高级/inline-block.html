@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>内联块inlineBlock</title>
+    <style>
+        #div1 {
+            background-color: red;
+            height: 40px;
+        }
+
+        #span1 {
+            background-color: red;
+            height: 40px;
+        }
+
+        #span2, #span3, #span4 {
+            background-color: red;
+            height: 40px;
+        }
+
+        /* 练习 */
+        /*.pageBox */
+        a{
+            width: 17px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #2052a3;
+            font: 12px "宋体";
+            display: inline-block;
+            border: 1px solid #c0c1e2;
+        }
+
+        .pageBtn{
+            width: 64px;
+        }
+
+        a:hover, .active{
+            background-color: #2052a3;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+<h2>块级元素</h2>
+<p>就算没有内容，通过设置高宽也会占据页面</p>
+<div id="div1"></div>
+<h2>内联元素</h2>
+<p>如果没有内容，就算指定高宽都不会显示，宽高由内容撑开。下面有一个不可见的内联元素：</p>
+<span id="span1"></span>
+
+<p>一个可见的内联元素：</p>
+<span id="span2">内联元素</span>
+<span id="span3">内联元素</span>
+<span id="span4">内联元素</span>
+<p>内联元素之间存在可被选中的空格，这在某些情况会带来问题</p>
+
+<h2>内联块inlineBlock</h2>
+<p>通过设置属性<code>display:inline-block</code>，来同时融合了块元素和内联元素的特性，详见笔记。</p>
+
+<h3>内联块练习-底部导航栏</h3>
+<p>  <code>a</code>标签是内联元素，不支持设置高宽，由于设计需要，所以需要将其转换为内联块</p>
+
+<div class="pageBox">
+    <a class="pageBtn" href="">上一页</a>
+    <a href="">1</a>
+    <a href="">2</a>
+    <a class="active" href="">3</a>
+    <a href="">4</a>
+    <a href="">5</a>
+    <a href="">6</a>
+    <a href="">7</a>
+    <a href="">8</a>
+    <a href="">9</a>
+    <a class="pageBtn" href="">下一页</a>
+</div>
+
+
+</body>
+</html>
