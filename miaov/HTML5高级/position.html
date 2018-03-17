@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定位</title>
+
+    <style>
+        .fa{
+            border:red solid 2px;
+            padding: 10px;
+        }
+
+        /*.fa > div*/
+        .ch1, .ch2, .ch3{
+            width: 50px;
+            height: 50px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        .ch1{
+            background-color: #3a3a3a;
+        }
+
+        .ch2{
+            background-color: #2052a3;
+        }
+
+        .ch3{
+            background-color: chartreuse;
+        }
+
+        /* 相对定位 */
+        .relative .ch2{
+            position: relative;
+            left: 50px;
+            top: 50px;
+        }
+
+        /* 绝对定位 */
+        .absolute .fa{
+            position: relative;
+        }
+        .absolute .ch2{
+            position: absolute;
+            left: 50px;
+            top: 50px;
+        }
+
+        /* 固定定位 */
+        .fixed .ch2{
+            position: fixed;
+            right: 40px;
+            bottom: 40px;
+        }
+
+        /* 综合应用：弹出窗效果 */
+        .opacity ,.content ,.mark{
+            width: 200px;
+            height: 200px;
+        }
+
+        .opacity{
+            border:red dotted 2px;
+            position: relative;
+        }
+
+        .content{
+            background-color: lightseagreen;
+            position: absolute;
+            /* 它也可以平分偏移 */
+            /*left: -6px;*/
+            /*top: -6px;*/
+            /* 这个需要在绝对定位的情况下设置 */
+            z-index: 2;
+        }
+
+        .mark{
+            background-color: darkslategray;
+            position: absolute;
+            right: -12px;
+            bottom: -12px;
+            /* 设置透明度:  0 - 1 */
+            opacity: 0.5;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="relative">
+        <h1>position:relative相对定位</h1>
+        <div class="fa">
+            <div class="ch1">1</div>
+            <div class="ch2">2</div>
+            <div class="ch3">3</div>
+            <p>残留空白</p>
+        </div>
+    </div>
+
+    <div class="absolute">
+        <h1>position:absolute绝对定位</h1>
+        <div class="fa">
+            <div class="ch1">1</div>
+            <div class="ch2">2</div>
+            <div class="ch3">3</div>
+            <p>原位置无空白，并且覆盖在1和3上面，但是注意父元素的padding对其效果的影响</p>
+        </div>
+    </div>
+
+    <div class="fixed">
+        <h1>position:fixed固定定位</h1>
+        <div class="fa">
+            <div class="ch1">1</div>
+            <div class="ch2">2</div>
+            <div class="ch3">3</div>
+        </div>
+    </div>
+
+    <h1>使用透明度和定位实现弹出窗效果(注意透明度的继承性)</h1>
+    <div class="opacity">
+        <div class="content"></div>
+        <div class="mark"></div>
+    </div>
+</body>
+</html>
